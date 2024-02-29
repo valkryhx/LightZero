@@ -88,7 +88,7 @@ if __name__ == "__main__":
         from lzero.entry import train_muzero_with_gym_env as train_muzero
         from lzero.entry import eval_muzero_with_gym_env as eval_muzero
 
-    train_muzero([main_config, create_config], seed=0, max_env_step=max_env_step)
+    #train_muzero([main_config, create_config], seed=0, max_env_step=max_env_step)
     eval_muzero(
         input_cfg=[main_config, create_config],
         seed= 0,
