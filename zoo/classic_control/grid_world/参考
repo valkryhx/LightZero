@@ -1,0 +1,8 @@
+参考  https://medium.com/data-science-in-your-pocket/how-to-create-a-custom-openai-gym-environment-with-codes-fb5de015de3c
+
+https://copyprogramming.com/howto/how-to-implement-a-2d-openai-gym-environment-that-uses-images-as-observations
+
+https://towardsdatascience.com/creating-a-custom-openai-gym-environment-for-stock-trading-be532be3910e
+https://blog.csdn.net/WHTU_JZZ/article/details/126955600
+下面这个是关键  理解 space的box和tuple
+https://mxxhcm.github.io/2019/04/12/gym/
