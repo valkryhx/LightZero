@@ -89,10 +89,11 @@ if __name__ == "__main__":
         from lzero.entry import eval_muzero_with_gym_env as eval_muzero
 
     #train_muzero([main_config, create_config], seed=0, max_env_step=max_env_step)
-    eval_muzero(
+    res = eval_muzero(
         input_cfg=[main_config, create_config],
         seed= 0,
         model= None,
         model_path = '/kaggle/working/LightZero/data_mz_ctree/cartpole_muzero_ns25_upc100_rr0_seed0_240229_114840/ckpt/ckpt_best.pth.tar',
         num_episodes_each_seed= 1,
         print_seed_details= False)
+    print(res)
