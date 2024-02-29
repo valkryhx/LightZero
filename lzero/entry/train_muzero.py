@@ -151,6 +151,7 @@ def train_muzero(
             collect_kwargs['epsilon'] = 0.0
 
         # Evaluate policy performance.
+        print(f'learner.train_iter={learner.train_iter}')
         if evaluator.should_eval(learner.train_iter):
             stop, reward = evaluator.eval(learner.save_checkpoint, learner.train_iter, collector.envstep)
             if stop:
