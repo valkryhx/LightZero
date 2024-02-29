@@ -8,8 +8,8 @@ n_episode = 8
 evaluator_env_num = 3
 num_simulations = 25
 update_per_collect = 100
-batch_size = 256
-max_env_step = int(1e2)# int(1e5)
+batch_size = 16#256
+max_env_step = int(5e1)# int(1e5)
 reanalyze_ratio = 0
 # ==============================================================
 # end of the most frequently changed config specified by the user
@@ -18,7 +18,7 @@ reanalyze_ratio = 0
 cartpole_muzero_config = dict(
     exp_name=f'data_mz_ctree/cartpole_muzero_ns{num_simulations}_upc{update_per_collect}_rr{reanalyze_ratio}_seed0',
     env=dict(
-        env_id='CartPole-v1',
+        env_id='CartPole-v0',
         continuous=False,
         manually_discretization=False,
         collector_env_num=collector_env_num,
