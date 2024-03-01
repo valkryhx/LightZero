@@ -37,7 +37,7 @@ class MazeGameEnv(gym.Env):
         super().reset(seed=seed)
         self.current_pos = self.start_pos
         self.max_step =9
-        return self.maze ,{}
+        return self._get_obs() ,{}
 
     def step(self, action):
         # Move the agent based on the selected action
