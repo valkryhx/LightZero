@@ -272,6 +272,7 @@ class GameSegment:
             For environments with a variable action space, such as board games, the elements in `child_visit_segment` may have
             different lengths. In such scenarios, it is necessary to use the object data type for `self.child_visit_segment`.
         """
+        print(self.obs_segment)
         self.obs_segment = np.array(self.obs_segment)
         self.action_segment = np.array(self.action_segment)
         self.reward_segment = np.array(self.reward_segment)
