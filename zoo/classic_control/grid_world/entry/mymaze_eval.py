@@ -18,7 +18,8 @@ if __name__ == "__main__":
         seeds and the number of episodes per seed.
     """
     # model_path = "./ckpt/ckpt_best.pth.tar"
-    model_path = None
+    #model_path = None
+    model_path ="/kaggle/working/LightZero/data_mz_ctree/mymaze_muzero_ns25_upc100_rr0_seed0_240301_065201/ckpt/ckpt_best.pth.tar"
     returns_mean_seeds = []
     returns_seeds = []
     seeds = [0]
