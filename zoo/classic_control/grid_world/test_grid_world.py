@@ -4,7 +4,7 @@ import numpy as np
 import pygame
 #Maze config
 #from mazegame.mazegame import MazeGameEnv
-import mazegame
+from mazegame.mazegame import MazeGameEnv
 
 maze = [
     ['S', '', '.', '.'],
