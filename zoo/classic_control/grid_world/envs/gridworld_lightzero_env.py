@@ -70,7 +70,7 @@ class MyMazeEnv(BaseEnv):
         if necessary. Returns the first observation.
         """
         if not self._init_flag:
-            self._env = gym.make('MyMaze-v1')
+            self._env = gym.make('MyMaze-v1',render_mode="rgb_array")
             if self._replay_path is not None:
                 timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
                 video_name = f'{self._env.spec.id}-video-{timestamp}'
