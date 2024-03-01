@@ -11,7 +11,7 @@ class MazeGameEnv(gym.Env):
     metadata = {"render_modes": ["human", "rgb_array",None], "render_fps": 4}
     def __init__(self):
         super(MazeGameEnv, self).__init__()
-            
+        self.max_step=9    
         self.maze = np.zeros([4,4])  # Maze represented as a 2D numpy array
         self.maze[3,3]=2
         self.start_pos = [0,0]#np.where(self.maze == 'S')  # Starting position
@@ -61,8 +61,10 @@ class MazeGameEnv(gym.Env):
         else:
             reward = 0.0
             done = False
+        self.max_step -= 1
+        truncated = not (self.max_step>0)
 
-        return self._get_obs(), reward, done, False, {}
+        return self._get_obs(), reward, done, truncated, {}
 
     def _is_valid_position(self, pos):
         row, col = pos
