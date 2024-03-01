@@ -9,7 +9,7 @@ evaluator_env_num = 3
 num_simulations = 26
 update_per_collect = 50
 batch_size = 16#256
-max_env_step = int(1e4)# int(1e5)
+max_env_step = int(1e3)# int(1e5)
 reanalyze_ratio = 0
 # ==============================================================
 # end of the most frequently changed config specified by the user
