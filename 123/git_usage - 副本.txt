@@ -1,0 +1,35 @@
+# muzero伪代码 https://arxiv.org/src/1911.08265v2/anc/pseudocode.py
+# editplus 修改 工具-首选项目 ： 编码方式修改为utf8 ，制表缩进修改为插入空格替代制表符
+
+git add xxxfile
+git commit -m "info"
+git push -u origin master
+
+https://blog.csdn.net/yl_cc/article/details/72676538
+
+// 从暂存区中撤销一个指定文件
+git reset HEAD 文件名称
+// 从暂存区中撤销所有文件
+git reset HEAD .
+
+https://blog.csdn.net/Sco_114/article/details/121135474
+
+git status -s
+https://www.runoob.com/git/git-add.html
+
+
+删除本地文件后，想从远程仓库中重新新Pull最新代码，但是执行了git pull origin develop 命令后始终无法拉取下来
+
+提示 Already up-to-date.
+
+原因：当前本地库处于另一个分支中，需将本分支发Head重置至develop
+
+git 强行pull并覆盖本地文件(依次执行)
+
+git fetch --all
+
+git reset --hard origin/master
+
+git pull
+
+https://www.cnblogs.com/ww25/p/15912580.html
