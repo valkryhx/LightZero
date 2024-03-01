@@ -22,6 +22,7 @@ mymaze_muzero_config = dict(
         env_id='MyMaze-v1',
         continuous=False,
         obs_shape=(1, 4, 4),
+        channel_last=False,
         manually_discretization=False,
         collector_env_num=collector_env_num,
         evaluator_env_num=evaluator_env_num,
