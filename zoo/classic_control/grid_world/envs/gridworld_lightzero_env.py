@@ -11,8 +11,8 @@ from ding.utils import ENV_REGISTRY
 from easydict import EasyDict
 
 
-@ENV_REGISTRY.register('gridworld_lightzero')
-class CartPoleEnv(BaseEnv):
+@ENV_REGISTRY.register('mymaze_lightzero')
+class MyMazeEnv(BaseEnv):
     """
     LightZero version of the classic CartPole environment. This class includes methods for resetting, closing, and
     stepping through the environment, as well as seeding for reproducibility, saving replay videos, and generating random
@@ -22,7 +22,7 @@ class CartPoleEnv(BaseEnv):
 
     config = dict(
         # env_id (str): The name of the environment.
-        env_id="GridWorld-v0",
+        env_id="MyMaze-v1",
         # replay_path (str): The path to save the replay video. If None, the replay will not be saved.
         # Only effective when env_manager.type is 'base'.
         replay_path=None,
@@ -42,13 +42,14 @@ class CartPoleEnv(BaseEnv):
         self._init_flag = False
         self._continuous = False
         self._replay_path = cfg.replay_path
-        self._observation_space = gym.spaces.Dict(
-            {
-                "agent": spaces.Box(0, size - 1, shape=(2,), dtype=int),
-                "target": spaces.Box(0, size - 1, shape=(2,), dtype=int),
-            }
-        )
-        self._action_space = gym.spaces.Discrete(2)
+        #self._observation_space = gym.spaces.Box(
+        #    low=np.array([-4.8, float("-inf"), -0.42, float("-inf")]),
+        #    high=np.array([4.8, float("inf"), 0.42, float("inf")]),
+        #    shape=(4,),
+        #    dtype=np.float32
+        #)
+        spaces.Box(low=0.0,high=2.0,shape=(1,4,4),dtype=np.float32)
+        self._action_space = gym.spaces.Discrete(4)
         self._action_space.seed(0)  # default seed
         self._reward_space = gym.spaces.Box(low=0.0, high=1.0, shape=(1,), dtype=np.float32)
 
@@ -58,7 +59,7 @@ class CartPoleEnv(BaseEnv):
         if necessary. Returns the first observation.
         """
         if not self._init_flag:
-            self._env = gym.make('GridWorld-v0', render_mode="rgb_array")
+            self._env = gym.make('MyMaze-v1', render_mode=None)
             if self._replay_path is not None:
                 timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
                 video_name = f'{self._env.spec.id}-video-{timestamp}'
@@ -156,6 +157,11 @@ class CartPoleEnv(BaseEnv):
         random_action = to_ndarray([random_action], dtype=np.int64)
         return random_action
 
+
+    @property
+    def legal_actions(self):
+        return np.arange(self._action_space.n)
+
     @property
     def observation_space(self) -> gym.spaces.Space:
         """
@@ -181,4 +187,4 @@ class CartPoleEnv(BaseEnv):
         """
         String representation of the environment.
         """
-        return "LightZero GridWorld-v0 Env"
+        return "LightZero MyMaze-v1 Env"

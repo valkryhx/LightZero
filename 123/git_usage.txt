@@ -4,6 +4,7 @@
 git add xxxfile
 git commit -m "info"
 git push -u origin master
+或者 git push -u origin
 
 https://blog.csdn.net/yl_cc/article/details/72676538
 
