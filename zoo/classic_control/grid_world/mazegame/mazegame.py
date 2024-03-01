@@ -12,7 +12,7 @@ class MazeGameEnv(gym.Env):
     def __init__(self):
         super(MazeGameEnv, self).__init__()
         #self.max_step=9    
-        self.maze = np.zeros([4,4])  # Maze represented as a 2D numpy array
+        self.maze = np.zeros([4,4],dtype=np.float32)  # Maze represented as a 2D numpy array
         self.maze[3,3]=2
         self.start_pos = [0,0]#np.where(self.maze == 'S')  # Starting position
         self.goal_pos = [3,3]#np.where(self.maze == 'G')  # Goal position
@@ -24,7 +24,7 @@ class MazeGameEnv(gym.Env):
 
         # Observation space is grid of size:rows x columns
         #self.observation_space = spaces.Tuple((spaces.Discrete(self.num_rows), spaces.Discrete(self.num_cols)))
-        self.observation_space = spaces.Box(low=0.0,high=2.0,shape=(16,))
+        self.observation_space = spaces.Box(low=0.0,high=2.0,shape=(16,),dtype=np.float32)
 
         # Initialize Pygame
         #pygame.init()
