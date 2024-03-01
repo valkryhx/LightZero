@@ -1,9 +1,10 @@
-import grid_world
+#import grid_world
 import gymnasium as gym
 import numpy as np
 import pygame
 #Maze config
-#from grid_world.mazegame import MazeGameEnv
+#from mazegame.mazegame import MazeGameEnv
+import mazegame
 
 maze = [
     ['S', '', '.', '.'],

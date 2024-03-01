@@ -1,8 +1,8 @@
-from mazegame import MazeGameEnv
+from mazegame.mazegame import MazeGameEnv
 from gymnasium.envs.registration import register
 
 register(
      id="MyMaze-v1",
-     entry_point="mazegame:MazeGameEnv",
+     entry_point="mazegame.mazegame:MazeGameEnv",
      max_episode_steps=300,
 )
