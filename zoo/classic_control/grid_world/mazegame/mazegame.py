@@ -36,6 +36,7 @@ class MazeGameEnv(gym.Env):
     def reset(self,seed=None,options=None):
         super().reset(seed=seed)
         self.current_pos = self.start_pos
+        self.max_step =9
         return self.maze ,{}
 
     def step(self, action):
