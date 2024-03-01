@@ -24,7 +24,7 @@ class MazeGameEnv(gym.Env):
 
         # Observation space is grid of size:rows x columns
         #self.observation_space = spaces.Tuple((spaces.Discrete(self.num_rows), spaces.Discrete(self.num_cols)))
-        self.observation_space = spaces.Box(low=0.0,high=2.0,shape=(1,4,4))
+        self.observation_space = spaces.Box(low=0.0,high=2.0,shape=(16,))
 
         # Initialize Pygame
         #pygame.init()
@@ -106,8 +106,9 @@ class MazeGameEnv(gym.Env):
         self.show = deepcopy(self.maze)
         self.show[self.current_pos[0],self.current_pos[1]] = 1
         #self.show
-        print(self.show.dtype)
-        return [self.show]  
+        #print(self.show.dtype)
+        #return [self.show]
+        return self.show.flattern()         
     def render(self):
         print(self._get_obs())        
 
