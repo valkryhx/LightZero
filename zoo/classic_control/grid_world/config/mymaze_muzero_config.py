@@ -1,15 +1,16 @@
 from easydict import EasyDict
-
+import logging
+logging.basicConfig(level=logging.ERROR)
 # ==============================================================
 # begin of the most frequently changed config specified by the user
 # ==============================================================
 collector_env_num = 8
 n_episode = 8
 evaluator_env_num = 3
-num_simulations = 26
-update_per_collect = 50
-batch_size = 16#256
-max_env_step = int(1e3)# int(1e5)
+num_simulations = 25
+update_per_collect = 100
+batch_size = 256
+max_env_step = int(1e5)# int(1e5)
 reanalyze_ratio = 0
 # ==============================================================
 # end of the most frequently changed config specified by the user
@@ -50,7 +51,7 @@ mymaze_muzero_config = dict(
         num_simulations=num_simulations,
         reanalyze_ratio=reanalyze_ratio,
         n_episode=n_episode,
-        eval_freq=int(2e1),
+        eval_freq=int(50),
         replay_buffer_size=int(1e6),  # the size/capacity of replay_buffer, in the terms of transitions.
         collector_env_num=collector_env_num,
         evaluator_env_num=evaluator_env_num,
