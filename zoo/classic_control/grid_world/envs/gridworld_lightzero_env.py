@@ -48,7 +48,7 @@ class MyMazeEnv(BaseEnv):
         #    shape=(4,),
         #    dtype=np.float32
         #)
-        spaces.Box(low=0.0,high=2.0,shape=(1,4,4),dtype=np.float32)
+        self._observation_space=gym.spaces.Box(low=0.0,high=2.0,shape=(1,4,4),dtype=np.float32)
         self._action_space = gym.spaces.Discrete(4)
         self._action_space.seed(0)  # default seed
         self._reward_space = gym.spaces.Box(low=0.0, high=1.0, shape=(1,), dtype=np.float32)
