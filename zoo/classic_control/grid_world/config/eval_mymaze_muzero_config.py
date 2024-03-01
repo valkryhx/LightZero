@@ -29,7 +29,7 @@ mymaze_muzero_config = dict(
     ),
     policy=dict(
         model=dict(
-            observation_shape=16,#4,
+            observation_shape=(1,4,4),#4,
             action_space_size=4,#2,
             model_type='mlp', 
             lstm_hidden_size=128,
