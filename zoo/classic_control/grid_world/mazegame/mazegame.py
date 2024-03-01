@@ -9,7 +9,7 @@ import random
 
 class MazeGameEnv(gym.Env):
     metadata = {"render_modes": ["human", "rgb_array",None], "render_fps": 4}
-    def __init__(self):
+    def __init__(self,render_mode='rgb_array'):
         super(MazeGameEnv, self).__init__()
         #self.max_step=9    
         self.maze = np.zeros([4,4],dtype=np.float32)  # Maze represented as a 2D numpy array
