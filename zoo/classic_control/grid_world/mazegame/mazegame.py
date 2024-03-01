@@ -24,7 +24,7 @@ class MazeGameEnv(gym.Env):
 
         # Observation space is grid of size:rows x columns
         #self.observation_space = spaces.Tuple((spaces.Discrete(self.num_rows), spaces.Discrete(self.num_cols)))
-        self.observation_space = spaces.Box(low=0.0,high=2.0,shape=(16,),dtype=np.float32)
+        self.observation_space = spaces.Box(low=0.0,high=2.0,shape=(1,4,4),dtype=np.float32)
 
         # Initialize Pygame
         #pygame.init()
@@ -111,7 +111,11 @@ class MazeGameEnv(gym.Env):
         #self.show
         #print(self.show.dtype)
         #return [self.show]
-        return self.show.flatten()         
+        self.show = np.array([self.show])
+        #print(self.show.shape)
+        #return self.show.flatten() 
+        return self.show        
+    
     def render(self):
         print(self._get_obs())        
 
