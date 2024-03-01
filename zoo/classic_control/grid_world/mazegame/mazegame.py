@@ -8,7 +8,7 @@ from gymnasium import spaces
 import random 
 
 class MazeGameEnv(gym.Env):
-    metadata = {"render_modes": ["human", "rgb_array"], "render_fps": 4}
+    metadata = {"render_modes": ["human", "rgb_array",None], "render_fps": 4}
     def __init__(self):
         super(MazeGameEnv, self).__init__()
             
