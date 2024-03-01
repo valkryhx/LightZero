@@ -108,7 +108,7 @@ class MazeGameEnv(gym.Env):
         #self.show
         #print(self.show.dtype)
         #return [self.show]
-        return self.show.flattern()         
+        return self.show.flatten()         
     def render(self):
         print(self._get_obs())        
 
