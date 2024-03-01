@@ -1,4 +1,4 @@
-#from grid_world.mazegame import MazeGameEnv
+from grid_world.mazegame import MazeGameEnv
 from gymnasium.envs.registration import register
 
 register(
