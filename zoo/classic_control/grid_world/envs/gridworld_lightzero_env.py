@@ -12,6 +12,16 @@ from easydict import EasyDict
 import zoo.classic_control.grid_world.mazegame
 from zoo.classic_control.grid_world.mazegame.mazegame import MazeGameEnv
 
+from gymnasium.envs.registration import register
+
+register(
+     id="MyMaze-v1",
+     entry_point="zoo.classic_control.grid_world.mazegame.mazegame:MazeGameEnv",
+     max_episode_steps=300,
+)
+
+
+
 @ENV_REGISTRY.register('mymaze_lightzero')
 class MyMazeEnv(BaseEnv):
     """
