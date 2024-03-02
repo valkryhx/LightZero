@@ -71,7 +71,7 @@ main_config = mymaze_muzero_config
 mymaze_muzero_create_config = dict(
     env=dict(
         type='mymaze_lightzero',
-        import_names=['zoo.classic_control.grid_world.envs.gridworld_lightzero_env'],
+        import_names=['zoo.classic_control.mazegame.envs.mazegame_lightzero_env'],
     ),
     env_manager=dict(type='subprocess'),
     policy=dict(
