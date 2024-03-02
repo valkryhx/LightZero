@@ -105,7 +105,7 @@ if __name__ == "__main__":
             seed= 0,
             model= None,
             print_seed_details= False,
-            model_path =sys.argv[1], '/kaggle/working/LightZero/data_mz_ctree/mymaze_muzero_ns25_upc100_rr0_seed0_240301_065201/ckpt/ckpt_best.pth.tar',
+            model_path =sys.argv[1],# '/kaggle/working/LightZero/data_mz_ctree/mymaze_muzero_ns25_upc100_rr0_seed0_240301_065201/ckpt/ckpt_best.pth.tar',
             num_episodes_each_seed= 1
             )
         print(res)
