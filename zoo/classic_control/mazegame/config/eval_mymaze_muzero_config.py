@@ -99,7 +99,7 @@ if __name__ == "__main__":
 
     #train_muzero([main_config, create_config], seed=0, max_env_step=max_env_step)
     if len(sys.argv)>0:
-        print(sys.argv)
+        #print(sys.argv)
         res = eval_muzero(
             input_cfg=[main_config, create_config],
             seed= 0,
