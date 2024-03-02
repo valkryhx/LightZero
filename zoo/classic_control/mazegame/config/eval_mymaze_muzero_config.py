@@ -1,5 +1,6 @@
 from easydict import EasyDict
 import logging
+import sys
 logging.basicConfig(level=logging.ERROR)
 # ==============================================================
 # begin of the most frequently changed config specified by the user
@@ -21,6 +22,8 @@ mymaze_muzero_config = dict(
     env=dict(
         env_id='MyMaze-v1',
         continuous=False,
+        obs_shape=(1, 4, 4),
+        channel_last=False,
         manually_discretization=False,
         collector_env_num=collector_env_num,
         evaluator_env_num=evaluator_env_num,
@@ -29,14 +32,19 @@ mymaze_muzero_config = dict(
     ),
     policy=dict(
         model=dict(
-            observation_shape=(1,4,4),#4,
+            observation_shape=(1,4,4),#16,#4,
+            channel_last=False,
+            image_channel=1,
             action_space_size=4,#2,
-            model_type='mlp', 
-            lstm_hidden_size=128,
-            latent_state_dim=128,
+            #model_type='conv',#'mlp', 
+            #lstm_hidden_size=128,
+            #latent_state_dim=128,
             self_supervised_learning_loss=True,  # NOTE: default is False.
             discrete_action_encoding_type='one_hot',
-            norm_type='BN', 
+            #norm_type='BN', 
+            
+            num_res_blocks=2,
+            num_channels=32,
         ),
         cuda=True,
         env_type='not_board_games',
@@ -64,7 +72,7 @@ main_config = mymaze_muzero_config
 mymaze_muzero_create_config = dict(
     env=dict(
         type='mymaze_lightzero',
-        import_names=['zoo.classic_control.grid_world.envs.gridworld_lightzero_env'],
+        import_names=['zoo.classic_control.mazegame.envs.mazegame_lightzero_env'],
     ),
     env_manager=dict(type='subprocess'),
     policy=dict(
@@ -90,11 +98,14 @@ if __name__ == "__main__":
         from lzero.entry import eval_muzero_with_gym_env as eval_muzero
 
     #train_muzero([main_config, create_config], seed=0, max_env_step=max_env_step)
-    res = eval_muzero(
-        input_cfg=[main_config, create_config],
-        seed= 0,
-        model= None,
-        model_path = '/kaggle/working/LightZero/data_mz_ctree/mymaze_muzero_ns25_upc100_rr0_seed0_240301_065201/ckpt/ckpt_best.pth.tar',
-        num_episodes_each_seed= 1,
-        print_seed_details= False)
-    print(res)
+    if len(sys.argv)>0:
+        res = eval_muzero(
+            input_cfg=[main_config, create_config],
+            seed= 0,
+            model= None,
+            model_path =sys.argv[1], '/kaggle/working/LightZero/data_mz_ctree/mymaze_muzero_ns25_upc100_rr0_seed0_240301_065201/ckpt/ckpt_best.pth.tar',
+            num_episodes_each_seed= 1,
+            print_seed_details= False)
+        print(res)
+    else :
+        print(f"请传入pth.ckt.tar  path")
