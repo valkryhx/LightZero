@@ -31,8 +31,11 @@ mymaze_muzero_config = dict(
         manager=dict(shared_memory=False, ),
     ),
     policy=dict(
-        # 根据issue 这里增加model_path
+        # 根据issue 这里增加sampled_algo , gumble_algo,model_path
+        sampled_algo=False,
+        gumbel_algo=False,
         model_path="/kaggle/working/LightZero/data_mz_ctree/mymaze_muzero_ns25_upc100_rr0_seed0_240308_075609/ckpt/ckpt_best.pth.tar" ,
+        # add end
         model=dict(
             observation_shape=(1,4,4),#16,#4,
             channel_last=False,
@@ -56,7 +59,9 @@ mymaze_muzero_config = dict(
         num_unroll_steps=3,
         td_steps=5,
         gray_scale=False,
+        transform2string=False,
         discount_factor=1,
+        # add end
         env_type='not_board_games',
         action_type='varied_action_space',
         game_segment_length=50,
