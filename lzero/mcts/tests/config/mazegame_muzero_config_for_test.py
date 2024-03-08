@@ -49,6 +49,7 @@ mymaze_muzero_config = dict(
             num_channels=32,
         ),
         cuda=True,
+        num_unroll_steps=3,
         env_type='not_board_games',
         action_type='varied_action_space',
         game_segment_length=50,
