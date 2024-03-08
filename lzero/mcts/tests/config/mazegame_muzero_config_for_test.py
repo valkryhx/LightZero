@@ -47,6 +47,8 @@ mymaze_muzero_config = dict(
             
             num_res_blocks=2,
             num_channels=32,
+            ## add from lzero/mcts/tests/config/tictactoe_muzero_bot_mode_config_for_test.py#L70
+            frame_stack_num=1,
         ),
         cuda=True,
         # add from https://github.com/opendilab/LightZero/blob/6d98c0ea56407578a08244b0c34edc93833e9e45/lzero/mcts/tests/config/tictactoe_muzero_bot_mode_config_for_test.py#L70
