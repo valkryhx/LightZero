@@ -134,3 +134,7 @@ def test_game_segment(test_algo):
 
         for env in envs:
             env.close()
+if __name__ == "__main__":
+    
+    test_algo = 'Muzero'
+    test_game_segment(test_algo)
