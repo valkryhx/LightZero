@@ -49,7 +49,11 @@ mymaze_muzero_config = dict(
             num_channels=32,
         ),
         cuda=True,
+        # add from https://github.com/opendilab/LightZero/blob/6d98c0ea56407578a08244b0c34edc93833e9e45/lzero/mcts/tests/config/tictactoe_muzero_bot_mode_config_for_test.py#L70
         num_unroll_steps=3,
+        td_steps=5,
+         
+        discount_factor=1,
         env_type='not_board_games',
         action_type='varied_action_space',
         game_segment_length=50,
