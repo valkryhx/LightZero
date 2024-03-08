@@ -46,7 +46,13 @@ mymaze_muzero_config = dict(
             channel_last=False,
             image_channel=1,
             action_space_size=4,#2,
+            # add 
             model_type='conv',#'mlp', 
+            support_scale=5,
+            reward_support_size=5,
+            value_support_size=5,
+            categorical_distribution=True,
+            # add end
             #lstm_hidden_size=128,
             #latent_state_dim=128,
             self_supervised_learning_loss=True,  # NOTE: default is False.
