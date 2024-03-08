@@ -9,7 +9,7 @@ from ding.envs import ObsPlusPrevActRewWrapper
 from ding.torch_utils import to_ndarray
 from ding.utils import ENV_REGISTRY
 from easydict import EasyDict
-import zoo.classic_control.grid_world.mazegame
+#import zoo.classic_control.grid_world.mazegame
 from zoo.classic_control.mazegame.mazegame.mazegame import MazeGameEnv
 
 from gymnasium.envs.registration import register

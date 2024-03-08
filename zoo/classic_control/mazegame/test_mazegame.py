@@ -4,13 +4,13 @@ import numpy as np
 import pygame
 #Maze config
 #from mazegame.mazegame import MazeGameEnv
-from zoo.classic_control.grid_world.mazegame.mazegame import MazeGameEnv
+from zoo.classic_control.mazegame.mazegame import MazeGameEnv
 
 from gymnasium.envs.registration import register
 
 register(
      id="MyMaze-v1",
-     entry_point="zoo.classic_control.grid_world.mazegame.mazegame:MazeGameEnv",
+     entry_point="zoo.classic_control.mazegame.mazegame.mazegame:MazeGameEnv",
      max_episode_steps=300,
 )
 
