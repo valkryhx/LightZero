@@ -48,6 +48,9 @@ def test_game_segment(test_algo):
     with torch.no_grad():
         # initializations
         init_observations = [env.reset() for env in envs]
+        print(init_observations)
+        print(init_observations[0])
+        print(type(init_observations[0]))
         dones = np.array([False for _ in range(config.env.evaluator_env_num)])
         game_segments = [
             GameSegment(
