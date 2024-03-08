@@ -136,5 +136,5 @@ def test_game_segment(test_algo):
             env.close()
 if __name__ == "__main__":
     
-    test_algo = 'Muzero'
+    test_algo = 'MuZero'
     test_game_segment(test_algo)
