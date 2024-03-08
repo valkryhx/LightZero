@@ -31,6 +31,8 @@ mymaze_muzero_config = dict(
         manager=dict(shared_memory=False, ),
     ),
     policy=dict(
+        # 根据issue 这里增加model_path
+        model_path="/kaggle/working/LightZero/data_mz_ctree/mymaze_muzero_ns25_upc100_rr0_seed0_240308_075609/ckpt/ckpt_best.pth.tar" ,
         model=dict(
             observation_shape=(1,4,4),#16,#4,
             channel_last=False,
