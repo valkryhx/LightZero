@@ -8,10 +8,10 @@ logging.basicConfig(level=logging.ERROR)
 collector_env_num = 8
 n_episode = 8
 evaluator_env_num = 3
-num_simulations = 20
+num_simulations = 25
 update_per_collect = 100
 batch_size = 256
-max_env_step = int(1e3)# int(1e5) #max_env_step * num_simulations /num_unroll_steps =learner.train_iter=2000
+max_env_step = int(3e3)# int(1e5) #max_env_step * num_simulations /num_unroll_steps =learner.train_iter=2000
 reanalyze_ratio = 0
 # ==============================================================
 # end of the most frequently changed config specified by the user
