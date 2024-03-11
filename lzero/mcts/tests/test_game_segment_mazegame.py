@@ -121,6 +121,7 @@ def test_game_segment(test_algo):
                 # ==============================================================
                 # the core initial_inference.
                 # ==============================================================
+                print(f'action={action}')
                 obs, reward, done, info = env.step(action)
                 print(f'obs={obs}')
                 print(f'reward={reward}')
