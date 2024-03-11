@@ -61,9 +61,9 @@ class MazeGameEnv(gym.Env):
         if np.array_equal(self.current_pos, self.goal_pos):
             reward = 1.0
             done = True
-        elif truncated and not (np.array_equal(self.current_pos, self.goal_pos)):
-            reward = - 1.0
-            done = True
+        #elif truncated and not (np.array_equal(self.current_pos, self.goal_pos)):
+        #    reward = - 1.0
+        #    done = True
         else:
             reward = 0.0
             done = False
