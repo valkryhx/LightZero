@@ -7,7 +7,7 @@ logging.basicConfig(level=logging.ERROR)
 # ==============================================================
 collector_env_num = 8
 n_episode = 8
-evaluator_env_num = 3
+evaluator_env_num = 50
 num_simulations = 20
 update_per_collect = 100
 batch_size = 16# 256
