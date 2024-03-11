@@ -1,5 +1,6 @@
 from easydict import EasyDict
 import logging
+import sys
 logging.basicConfig(level=logging.ERROR)
 # ==============================================================
 # begin of the most frequently changed config specified by the user
@@ -111,12 +112,12 @@ if __name__ == "__main__":
         print(res)
     else :
         print(f"train模式")
-    train_muzero([main_config, create_config], seed=0, max_env_step=max_env_step)
-    #res = eval_muzero(
-    #    input_cfg=[main_config, create_config],
-    #    seed= 0,
-    #    model= None,
-    #    model_path = '/kaggle/working/LightZero/data_mz_ctree/cartpole_muzero_ns25_upc100_rr0_seed0_240229_114840/ckpt/ckpt_best.pth.tar',
-    #    num_episodes_each_seed= 1,
-    #    print_seed_details= False)
-    #print(res)
+        train_muzero([main_config, create_config], seed=0, max_env_step=max_env_step)
+        #res = eval_muzero(
+        #    input_cfg=[main_config, create_config],
+        #    seed= 0,
+        #    model= None,
+        #    model_path = '/kaggle/working/LightZero/data_mz_ctree/cartpole_muzero_ns25_upc100_rr0_seed0_240229_114840/ckpt/ckpt_best.pth.tar',
+        #    num_episodes_each_seed= 1,
+        #    print_seed_details= False)
+        #print(res)
