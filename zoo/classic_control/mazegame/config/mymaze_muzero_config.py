@@ -97,7 +97,20 @@ if __name__ == "__main__":
         """
         from lzero.entry import train_muzero_with_gym_env as train_muzero
         from lzero.entry import eval_muzero_with_gym_env as eval_muzero
-
+    if len(sys.argv)>0:
+        #print(sys.argv)
+        print(f"eval模式")
+        res = eval_muzero(
+            input_cfg=[main_config, create_config],
+            seed= 0,
+            model= None,
+            print_seed_details= False,
+            model_path =sys.argv[1],# '/kaggle/working/LightZero/data_mz_ctree/mymaze_muzero_ns25_upc100_rr0_seed0_240301_065201/ckpt/ckpt_best.pth.tar',
+            num_episodes_each_seed= 1
+            )
+        print(res)
+    else :
+        print(f"train模式")
     train_muzero([main_config, create_config], seed=0, max_env_step=max_env_step)
     #res = eval_muzero(
     #    input_cfg=[main_config, create_config],
