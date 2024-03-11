@@ -38,7 +38,7 @@ mymaze_muzero_config = dict(
         # 根据issue 这里增加sampled_algo , gumble_algo,use_ture_chance_label_in_chance_encoder,model_path
         sampled_algo=True,#False,
         gumbel_algo=True,#False,
-        use_ture_chance_label_in_chance_encoder=False,
+        use_ture_chance_label_in_chance_encoder=True,#False,
         model_path="/kaggle/working/LightZero/data_mz_ctree/mymaze_muzero_ns25_upc100_rr0_seed0_240311_092714/ckpt/ckpt_best.pth.tar" ,
         # add end
         model=dict(
@@ -49,9 +49,9 @@ mymaze_muzero_config = dict(
             # add 
             model_type='conv',#'mlp', 
             support_scale=1,
-            reward_support_size=0*2+1,
-            value_support_size=0*2+1,
-            categorical_distribution=True,
+            reward_support_size=1*2+1,
+            value_support_size=1*2+1,
+            categorical_distribution=False,#True,
             # add end
             #lstm_hidden_size=128,
             #latent_state_dim=128,
