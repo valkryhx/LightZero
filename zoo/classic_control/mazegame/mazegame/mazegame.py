@@ -54,16 +54,20 @@ class MazeGameEnv(gym.Env):
         # Check if the new position is valid
         if self._is_valid_position(new_pos):
             self.current_pos = new_pos
-
+        self.max_step -= 1
+        truncated = not (self.max_step>0) # False
+        
         # Reward function
         if np.array_equal(self.current_pos, self.goal_pos):
             reward = 1.0
             done = True
+        elif truncated and not (np.array_equal(self.current_pos, self.goal_pos)):
+            reward = - 1.0
+            done = True
         else:
             reward = 0.0
             done = False
-        self.max_step -= 1
-        truncated = not (self.max_step>0) # False
+        
 
         return self._get_obs(), reward, done, truncated, {}
 
