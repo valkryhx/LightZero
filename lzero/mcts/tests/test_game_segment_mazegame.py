@@ -113,7 +113,7 @@ def test_game_segment(test_algo):
 
             roots_distributions = roots.get_distributions()
             roots_values = roots.get_values()
-
+            print(f'config.env.evaluator_env_num={config.env.evaluator_env_num}')
             for i in range(config.env.evaluator_env_num):
                 distributions, value, env = roots_distributions[i], roots_values[i], envs[i]
                 # ``deterministic=True``  indicates that we select the argmax action instead of sampling.
