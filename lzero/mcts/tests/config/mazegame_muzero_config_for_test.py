@@ -48,7 +48,7 @@ mymaze_muzero_config = dict(
             action_space_size=4,#2,
             # add 
             model_type='conv',#'mlp', 
-            support_scale=0,
+            support_scale=1,
             reward_support_size=0*2+1,
             value_support_size=0*2+1,
             categorical_distribution=True,
