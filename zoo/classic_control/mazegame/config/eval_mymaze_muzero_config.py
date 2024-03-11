@@ -11,7 +11,7 @@ evaluator_env_num = 300
 num_simulations = 20
 update_per_collect = 100
 batch_size = 16
-max_env_step = int(1e4)# int(1e5) #max_env_step * num_simulations /num_unroll_steps =learner.train_iter=2000
+max_env_step = int(5e3)# int(1e5) #max_env_step * num_simulations /num_unroll_steps =learner.train_iter=2000
 reanalyze_ratio = 0
 # ==============================================================
 # end of the most frequently changed config specified by the user
@@ -47,8 +47,8 @@ mymaze_muzero_config = dict(
             num_channels=32,
         ),
         cuda=True,
-        num_unroll_steps=6,
-        td_steps=6,
+        num_unroll_steps=20,
+        td_steps=20,
         env_type='not_board_games',
         action_type='varied_action_space',
         game_segment_length=50,
