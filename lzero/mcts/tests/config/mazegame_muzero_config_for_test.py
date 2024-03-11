@@ -36,8 +36,8 @@ mymaze_muzero_config = dict(
     ),
     policy=dict(
         # 根据issue 这里增加sampled_algo , gumble_algo,use_ture_chance_label_in_chance_encoder,model_path
-        sampled_algo=False,
-        gumbel_algo=False,
+        sampled_algo=True,#False,
+        gumbel_algo=True,#False,
         use_ture_chance_label_in_chance_encoder=False,
         model_path="/kaggle/working/LightZero/data_mz_ctree/mymaze_muzero_ns25_upc100_rr0_seed0_240311_092714/ckpt/ckpt_best.pth.tar" ,
         # add end
