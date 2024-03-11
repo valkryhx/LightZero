@@ -8,10 +8,10 @@ from easydict import EasyDict
 collector_env_num = 8
 n_episode = 8
 evaluator_env_num = 1#3 test时改成1
-num_simulations = 100
+num_simulations = 25
 update_per_collect = 100
 batch_size = 256
-max_env_step = int(1e4)# int(1e5)
+max_env_step = int(5e3)# int(1e5)
 reanalyze_ratio = 0
 # ==============================================================
 # end of the most frequently changed config specified by the user
@@ -67,8 +67,8 @@ mymaze_muzero_config = dict(
         cuda=True,
         
         # add from https://github.com/opendilab/LightZero/blob/6d98c0ea56407578a08244b0c34edc93833e9e45/lzero/mcts/tests/config/tictactoe_muzero_bot_mode_config_for_test.py#L70
-        num_unroll_steps=40,
-        td_steps=40,
+        num_unroll_steps=10,
+        td_steps=10,
         gray_scale=False,
         transform2string=False,
         discount_factor=1,
