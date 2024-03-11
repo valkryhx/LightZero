@@ -67,8 +67,8 @@ mymaze_muzero_config = dict(
         cuda=True,
         
         # add from https://github.com/opendilab/LightZero/blob/6d98c0ea56407578a08244b0c34edc93833e9e45/lzero/mcts/tests/config/tictactoe_muzero_bot_mode_config_for_test.py#L70
-        num_unroll_steps=10,
-        td_steps=10,
+        num_unroll_steps=20,
+        td_steps=20,
         gray_scale=False,
         transform2string=False,
         discount_factor=1,
