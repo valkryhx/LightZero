@@ -123,7 +123,7 @@ def test_game_segment(test_algo):
                 # ==============================================================
                 print(f'action={action}')
                 obs, reward, done, info = env.step(action)
-                print(f'obs={obs}')
+                print(f'obs=\n{obs}')
                 print(f'reward={reward}')
                 print(f'done={done}')
                 print(f'info={info}')
