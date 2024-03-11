@@ -98,7 +98,7 @@ if __name__ == "__main__":
         """
         from lzero.entry import train_muzero_with_gym_env as train_muzero
         from lzero.entry import eval_muzero_with_gym_env as eval_muzero
-    if len(sys.argv)>0:
+    if len(sys.argv)>1:
         #print(sys.argv)
         print(f"eval模式")
         res = eval_muzero(
