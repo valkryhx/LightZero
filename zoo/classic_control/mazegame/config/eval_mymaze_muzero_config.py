@@ -8,10 +8,10 @@ logging.basicConfig(level=logging.ERROR)
 collector_env_num = 8
 n_episode = 8
 evaluator_env_num = 300
-num_simulations = 40
+num_simulations = 20
 update_per_collect = 100
-batch_size = 256
-max_env_step = int(3e3)# int(1e5) #max_env_step * num_simulations /num_unroll_steps =learner.train_iter=2000
+batch_size = 16
+max_env_step = int(2e3)# int(1e5) #max_env_step * num_simulations /num_unroll_steps =learner.train_iter=2000
 reanalyze_ratio = 0
 # ==============================================================
 # end of the most frequently changed config specified by the user
@@ -47,8 +47,8 @@ mymaze_muzero_config = dict(
             num_channels=32,
         ),
         cuda=True,
-        num_unroll_steps=40,
-        td_steps=40,
+        num_unroll_steps=6,
+        td_steps=6,
         env_type='not_board_games',
         action_type='varied_action_space',
         game_segment_length=50,
