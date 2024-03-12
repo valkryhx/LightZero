@@ -38,6 +38,7 @@ mymaze_muzero_config = dict(
         # 根据issue 这里增加sampled_algo , gumble_algo,use_ture_chance_label_in_chance_encoder,model_path
         sampled_algo=False,
         gumbel_algo=False,
+         mcts_ctree=True,
         use_ture_chance_label_in_chance_encoder=False,
         # add moel_path here, but this path seems not working, I can even place a wrong path here , the test process still runs.
         model_path="/kaggle/working/LightZero/data_mz_ctree/mymaze_muzero_ns25_upc100_rr0_seed0/ckpt/ckpt_best.pth.tar" ,
@@ -48,7 +49,7 @@ mymaze_muzero_config = dict(
             image_channel=1,
             action_space_size=4,#2,
             # add 
-            model_type='conv',#'mlp', 
+            model_type='conv',  # options={'mlp', 'conv'}
             support_scale=1,
             reward_support_size=1*2+1,
             value_support_size=1*2+1,
