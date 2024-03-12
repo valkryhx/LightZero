@@ -50,9 +50,10 @@ mymaze_muzero_config = dict(
             action_space_size=4,#2,
             # add 
             model_type='conv',  # options={'mlp', 'conv'}
-            support_scale=1,
-            reward_support_size=1*2+1,
-            value_support_size=1*2+1,
+            support_scale=300, # 默认是300 可以用 support_scale=300 这个string来查
+            
+            reward_support_size=300*2+1,
+            value_support_size=300*2+1,
             categorical_distribution=False,#True,
             # add end
             #lstm_hidden_size=128,
