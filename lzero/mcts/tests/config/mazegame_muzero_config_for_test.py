@@ -50,12 +50,14 @@ mymaze_muzero_config = dict(
             action_space_size=4,#2,
             # add 
             model_type='conv',  # options={'mlp', 'conv'}
+            # support_scale 和 categorical_distribution=True 搭配使用 categorical_distribution 默认是True
+            # https://github.com/valkryhx/LightZero/blob/4d73183c5b3a40cba3a5a66bf792bb87016d92d2/lzero/policy/muzero.py#L52C13-L52C86
             support_scale=300, # 默认是300 可以用 support_scale=300 这个string来查
-            
             reward_support_size=300*2+1,
             value_support_size=300*2+1,
-            categorical_distribution=False,#True,
+            categorical_distribution=True,#False
             # add end
+            
             #lstm_hidden_size=128,
             #latent_state_dim=128,
             self_supervised_learning_loss=True,  # NOTE: default is False.
