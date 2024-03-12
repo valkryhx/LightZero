@@ -1,0 +1,4 @@
+https://blog.csdn.net/qq_45691577/article/details/129386350
+
+The obs returned by the `reset()` method is not within the observation space.
+修改mazegame.py 的get_obs 将return show 改成return np.array[show] 这样就让返回的shape(4,4) 变成shape(1,4,4) 这样才不会与observation=(1,4,4)不match
