@@ -39,7 +39,8 @@ mymaze_muzero_config = dict(
         sampled_algo=False,
         gumbel_algo=False,
         use_ture_chance_label_in_chance_encoder=False,
-        model_path="/kaggle/working/LightZero/data_mz_ctree/mymaze_muzero_nsadadasd20_upc100_rr0_seed0/ckpt/ckpt_best.pth.tar" ,
+        # add moel_path here, but this path seems not working, I can even place a wrong path here , the test process still runs.
+        model_path="/kaggle/working/LightZero/data_mz_ctree/mymaze_muzero_ns25_upc100_rr0_seed0/ckpt/ckpt_best.pth.tar" ,
         # add end
         model=dict(
             observation_shape=(1,4,4),#16,#4,
