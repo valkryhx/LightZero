@@ -13,7 +13,7 @@ class MazeGameEnv(gym.Env):
         super(MazeGameEnv, self).__init__()
         self.max_step=6    
         self.maze = np.zeros([4,4],dtype=np.float32)  # Maze represented as a 2D numpy array
-        self.maze[3,3]=2
+        self.maze[3,3]=2.0
         self.start_pos = [0,0]#np.where(self.maze == 'S')  # Starting position
         self.goal_pos = [3,3]#np.where(self.maze == 'G')  # Goal position
         self.current_pos = self.start_pos #starting position is current posiiton of agent
@@ -112,15 +112,16 @@ class MazeGameEnv(gym.Env):
         pygame.display.update()  # Update the display
     def _get_obs(self):
         self.show = deepcopy(self.maze)
-        self.show[self.current_pos[0],self.current_pos[1]] = 1
+        self.show[self.current_pos[0],self.current_pos[1]] = 1.0
         #self.show
         #print(self.show.dtype)
-        #return [self.show]
+        # shape(4,4) to shape(1,4,4)
+        return np.array([self.show])
         # 
         # self.show = np.array([self.show]).transpose(1,2,0) # 1,4,4 - > 4,4,1 貌似要把channel放在最后才行
         #print(self.show.shape)
         #return self.show.flatten() 
-        return self.show        
+        #return self.show        
     
     def render(self):
         print(self._get_obs())        
