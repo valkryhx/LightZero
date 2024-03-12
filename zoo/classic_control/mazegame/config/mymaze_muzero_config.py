@@ -1,16 +1,20 @@
 from easydict import EasyDict
 import logging
+import sys
 logging.basicConfig(level=logging.ERROR)
 # ==============================================================
 # begin of the most frequently changed config specified by the user
 # ==============================================================
 collector_env_num = 8
 n_episode = 8
+
 evaluator_env_num = 3
 num_simulations = 25
+
+
 update_per_collect = 100
 batch_size = 16# 256
-max_env_step = int(5e3)# int(1e5) #max_env_step * num_simulations /num_unroll_steps =learner.train_iter=2000
+max_env_step = int(6e3)# int(1e5) #max_env_step * num_simulations /num_unroll_steps =learner.train_iter=2000
 reanalyze_ratio = 0
 # ==============================================================
 # end of the most frequently changed config specified by the user
@@ -46,8 +50,10 @@ mymaze_muzero_config = dict(
             num_channels=32,
         ),
         cuda=True,
+
         num_unroll_steps=5,
         td_steps=6,
+
         env_type='not_board_games',
         action_type='varied_action_space',
         game_segment_length=50,
@@ -97,13 +103,26 @@ if __name__ == "__main__":
         """
         from lzero.entry import train_muzero_with_gym_env as train_muzero
         from lzero.entry import eval_muzero_with_gym_env as eval_muzero
-
-    train_muzero([main_config, create_config], seed=0, max_env_step=max_env_step)
-    #res = eval_muzero(
-    #    input_cfg=[main_config, create_config],
-    #    seed= 0,
-    #    model= None,
-    #    model_path = '/kaggle/working/LightZero/data_mz_ctree/cartpole_muzero_ns25_upc100_rr0_seed0_240229_114840/ckpt/ckpt_best.pth.tar',
-    #    num_episodes_each_seed= 1,
-    #    print_seed_details= False)
-    #print(res)
+    if len(sys.argv)>1:
+        #print(sys.argv)
+        print(f"eval模式")
+        res = eval_muzero(
+            input_cfg=[main_config, create_config],
+            seed= 0,
+            model= None,
+            print_seed_details= False,
+            model_path =sys.argv[1],# '/kaggle/working/LightZero/data_mz_ctree/mymaze_muzero_ns25_upc100_rr0_seed0_240301_065201/ckpt/ckpt_best.pth.tar',
+            num_episodes_each_seed= 1
+            )
+        print(res)
+    else :
+        print(f"train模式")
+        train_muzero([main_config, create_config], seed=0, max_env_step=max_env_step)
+        #res = eval_muzero(
+        #    input_cfg=[main_config, create_config],
+        #    seed= 0,
+        #    model= None,
+        #    model_path = '/kaggle/working/LightZero/data_mz_ctree/cartpole_muzero_ns25_upc100_rr0_seed0_240229_114840/ckpt/ckpt_best.pth.tar',
+        #    num_episodes_each_seed= 1,
+        #    print_seed_details= False)
+        #print(res)

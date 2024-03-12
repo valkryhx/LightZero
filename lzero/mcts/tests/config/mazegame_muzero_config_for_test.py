@@ -8,9 +8,9 @@ from easydict import EasyDict
 collector_env_num = 8
 n_episode = 8
 evaluator_env_num = 1#3 test时改成1
-num_simulations = 25
+num_simulations = 20
 update_per_collect = 100
-batch_size = 256
+batch_size = 16
 max_env_step = int(5e3)# int(1e5)
 reanalyze_ratio = 0
 # ==============================================================
@@ -36,10 +36,10 @@ mymaze_muzero_config = dict(
     ),
     policy=dict(
         # 根据issue 这里增加sampled_algo , gumble_algo,use_ture_chance_label_in_chance_encoder,model_path
-        sampled_algo=True,#False,
-        gumbel_algo=True,#False,
-        use_ture_chance_label_in_chance_encoder=True,#False,
-        model_path="/kaggle/working/LightZero/data_mz_ctree/mymaze_muzero_ns25_upc100_rr0_seed0/ckpt/ckpt_best.pth.tar" ,
+        sampled_algo=False,
+        gumbel_algo=False,
+        use_ture_chance_label_in_chance_encoder=False,
+        model_path="/kaggle/working/LightZero/data_mz_ctree/mymaze_muzero_ns20_upc100_rr0_seed0/ckpt/ckpt_best.pth.tar" ,
         # add end
         model=dict(
             observation_shape=(1,4,4),#16,#4,
@@ -67,8 +67,8 @@ mymaze_muzero_config = dict(
         cuda=True,
         
         # add from https://github.com/opendilab/LightZero/blob/6d98c0ea56407578a08244b0c34edc93833e9e45/lzero/mcts/tests/config/tictactoe_muzero_bot_mode_config_for_test.py#L70
-        num_unroll_steps=20,
-        td_steps=20,
+        num_unroll_steps=10,
+        td_steps=10,
         gray_scale=False,
         transform2string=False,
         discount_factor=1,
