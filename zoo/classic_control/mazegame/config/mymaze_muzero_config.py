@@ -18,6 +18,7 @@ max_env_step = int(6e3)# int(1e5) #max_env_step * num_simulations /num_unroll_st
 reanalyze_ratio = 0
 # ==============================================================
 # end of the most frequently changed config specified by the user
+# 所有配置和mazegame_muzero_config_for_test.py 保持一致
 # ==============================================================
 
 mymaze_muzero_config = dict(
@@ -48,6 +49,15 @@ mymaze_muzero_config = dict(
             
             num_res_blocks=2,
             num_channels=32,
+            # add 虽然默认是300 但是还是明确写出来好
+            # # support_scale 和 categorical_distribution=True 搭配使用 categorical_distribution 默认是True
+            # https://github.com/valkryhx/LightZero/blob/4d73183c5b3a40cba3a5a66bf792bb87016d92d2/lzero/policy/muzero.py#L52C13-L52C86
+            support_scale=300,
+            reward_support_size=300*2 + 1,
+            value_support_size=300*2 + 1,
+            # add 默认是True 但这里也明确写出来 
+            categorical_distribution=True,
+            
         ),
         cuda=True,
 
