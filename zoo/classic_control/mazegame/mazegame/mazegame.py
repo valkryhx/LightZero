@@ -24,7 +24,8 @@ class MazeGameEnv(gym.Env):
 
         # Observation space is grid of size:rows x columns
         #self.observation_space = spaces.Tuple((spaces.Discrete(self.num_rows), spaces.Discrete(self.num_cols)))
-        self.observation_space = spaces.Box(low=0.0,high=2.0,shape=(4,4,1),dtype=np.float32)
+        #self.observation_space = spaces.Box(low=0.0,high=2.0,shape=(4,4,1),dtype=np.float32)
+        self.observation_space = spaces.Box(low=0.0,high=2.0,shape=(1,4,4),dtype=np.float32)
 
         # Initialize Pygame
         #pygame.init()
@@ -115,7 +116,8 @@ class MazeGameEnv(gym.Env):
         #self.show
         #print(self.show.dtype)
         #return [self.show]
-        self.show = np.array([self.show]).transpose(1,2,0) # 1,1,4 - > 4,4,1 貌似要把channel放在最后才行
+        # 
+        # self.show = np.array([self.show]).transpose(1,2,0) # 1,4,4 - > 4,4,1 貌似要把channel放在最后才行
         #print(self.show.shape)
         #return self.show.flatten() 
         return self.show        
