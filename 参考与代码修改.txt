@@ -20,3 +20,7 @@ RuntimeError: Error(s) in loading state_dict for MuZeroModel:
 这是因为/lzero/mcts/tests/config/mazegame_muzero_config_for_test.py的53行 support_scale设置成了1 这跟https://github.com/valkryhx/LightZero/blob/main/zoo/classic_control/mazegame/config/mymaze_muzero_config.py#L37 的默认support_scale=300 冲突
 为什么默认是300 这可以根据 support_scale=300 在repo里面查 可以看到其他代码中都是默认这个值，最好是学习其他代码把这个值在train的config中写出来
 support_scale=300, # 默认是300 可以用 support_scale=300 这个string来查
+
+
+model 参数含义
+https://github.com/valkryhx/LightZero/blob/4d73183c5b3a40cba3a5a66bf792bb87016d92d2/lzero/policy/muzero.py#L53
