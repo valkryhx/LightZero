@@ -8,7 +8,9 @@ config = EasyDict(dict(
 # Test the environment
 env = MyGridEnv(config)
 obs = env.reset()
-env.render()
+#env.render()
+print("====init====")
+print(obs)
 
 done = False
 i=0
@@ -19,7 +21,7 @@ while i<10:
     action = env.random_action()
     print(f'idx={i}, action={action}')
     obs, rew, done, info = env.step(action)
-    env.render()
+    print(f'obs={obs}')
     print('Reward:', reward)
     print('Done:', done)
     
