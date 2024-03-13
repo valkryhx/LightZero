@@ -103,8 +103,8 @@ class MyGridEnv(BaseEnv):
         #action_mask = np.ones(self.action_space.n, 'int8')
         # 参考 gomoku_env.py的定义
         action_mask = np.zeros(grid_size*grid_size, 'int8')
-        print(f'self.legal_actions={self.legal_actions}')
         action_mask[self.legal_actions] = 1 # 
+        #print(f'self.legal_actions={self.legal_actions}')
         obs = {'observation': obs, 'action_mask': action_mask, 'to_play': -1}
 
         return obs
@@ -138,7 +138,10 @@ class MyGridEnv(BaseEnv):
         if done:
             info['eval_episode_return'] = self._eval_episode_return
 
-        action_mask = np.ones(self.action_space.n, 'int8')
+        #action_mask = np.ones(self.action_space.n, 'int8')
+        # 参考 gomoku_env.py的def _player_step定义 实时更新action_mask 
+        action_mask = np.zeros(grid_size*grid_size, 'int8')
+        action_mask[self.legal_actions] = 1 # 
         obs = {'observation': obs, 'action_mask': action_mask, 'to_play': -1}
 
         return BaseEnvTimestep(obs, rew, done, info)
