@@ -1,7 +1,7 @@
 
 
 import numpy #as numpy
-import pygame
+#import pygame
 from copy import deepcopy
 import gymnasium as gym
 from gymnasium import spaces
@@ -216,32 +216,7 @@ class GridEnv(gym.Env):
             return False
         return True
 
-    def render2(self):
-        # Clear the screen
-        self.screen.fill((255, 255, 255))  
-
-        # Draw env elements one cell at a time
-        for row in range(self.num_rows):
-            for col in range(self.num_cols):
-                cell_left = col * self.cell_size
-                cell_top = row * self.cell_size
-            
-                try:
-                    print(numpy.array(self.current_pos)==numpy.array([row,col]).reshape(-1,1))
-                except Exception as e:
-                    print('Initial state')
-
-                if self.maze[row, col] == '#':  # Obstacle
-                    pygame.draw.rect(self.screen, (0, 0, 0), (cell_left, cell_top, self.cell_size, self.cell_size))
-                elif self.maze[row, col] == 'S':  # Starting position
-                    pygame.draw.rect(self.screen, (0, 255, 0), (cell_left, cell_top, self.cell_size, self.cell_size))
-                elif self.maze[row, col] == 'G':  # Goal position
-                    pygame.draw.rect(self.screen, (255, 0, 0), (cell_left, cell_top, self.cell_size, self.cell_size))
-
-                if numpy.array_equal(numpy.array(self.current_pos), numpy.array([row, col]).reshape(-1,1)):  # Agent position
-                    pygame.draw.rect(self.screen, (0, 0, 255), (cell_left, cell_top, self.cell_size, self.cell_size))
-
-        pygame.display.update()  # Update the display
+  
     def _get_obs(self):
         self.show = deepcopy(self.maze)
         self.show[self.current_pos[0],self.current_pos[1]] = 1.0
