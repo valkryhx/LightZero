@@ -9,6 +9,7 @@ config = EasyDict(dict(
 env = MyGridEnv(config)
 obs = env.reset()
 #env.render()
+print(f'h_score={env._env.h_score}')
 print("====init====")
 print(obs)
 
