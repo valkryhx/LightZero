@@ -60,7 +60,7 @@ class GridEnv(gym.Env):
         # setting display size
         #self.screen = pygame.display.set_mode((self.num_cols * self.cell_size, self.num_rows * self.cell_size))
     def legal_actions(self):
-        legal_actions = list(self._actions)
+        legal_actions = self._actions
         if self.position and len(self.position)>1:
             # for example self.position=[2,9]
             #chosen_action = self.position[0]*grid_size + self.position[1]
@@ -69,9 +69,9 @@ class GridEnv(gym.Env):
             marked_col_act_0 = set([idx*grid_size + self.position[0] for idx in range(grid_size)])
             marked_col_act_1 = set([idx * grid_size + self.position[1] for idx in range(grid_size)])
             self._used_actions = self._used_actions | marked_row_act_0 | marked_row_act_1 | marked_col_act_0 | marked_col_act_1
-            legal_actions = list(legal_actions -self._invalid_actions -  self._used_actions)
+            legal_actions = legal_actions -self._invalid_actions -  self._used_actions
         #print(f'legal_actions={legal_actions}')
-        return legal_actions #list(self._actions)
+        return list(legal_actions) #list(self._actions)
         
     def get_observation(self):
         #observation = numpy.zeros((self.size, self.size))
