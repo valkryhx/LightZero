@@ -20,7 +20,7 @@ while i<10:
     
     action = env.random_action()
     print(f'idx={i}, action={action}')
-    obs, rew, done, info = env.step(action)
+    obs, reward, done, info = env.step(action)
     print(f'obs={obs}')
     print('Reward:', reward)
     print('Done:', done)

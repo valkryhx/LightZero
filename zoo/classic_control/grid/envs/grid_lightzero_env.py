@@ -98,7 +98,7 @@ class MyGridEnv(BaseEnv):
         self._observation_space = self._env.observation_space
         self._eval_episode_return = 0
         obs = to_ndarray(obs)
-
+        print(f'obs shape={obs.shape}')
         action_mask = np.ones(self.action_space.n, 'int8')
         obs = {'observation': obs, 'action_mask': action_mask, 'to_play': -1}
 
