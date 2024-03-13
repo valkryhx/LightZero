@@ -7,18 +7,9 @@ from zoo.classic_control.grid.grid.grid import GridEnv
 from zoo.classic_control.grid.envs.grid_lightzero_env import MyGridEnv
 from gymnasium.envs.registration import register
 
-
-
-
-
-
-
-#maze = [
-#    ['S', '', '.', '.'],
-#    ['.', '#', '.', '#'],
-#    ['.', '.', '.', '.'],
-#    ['#', '.', '#', 'G'],
-#]
+config = EasyDict(dict(
+    replay_path=None,
+))
 # Test the environment
 env = MyGridEnv()
 obs = env.reset()
