@@ -96,7 +96,7 @@ mymaze_muzero_create_config = dict(
     env_manager=dict(type='subprocess'),
     policy=dict(
         type='efficientzero',#'muzero',
-        import_names=['lzero.policy.efficientzero'],,#['lzero.policy.muzero'],
+        import_names=['lzero.policy.efficientzero'],#['lzero.policy.muzero'],
     ),
 )
 mymaze_muzero_create_config = EasyDict(mymaze_muzero_create_config)
