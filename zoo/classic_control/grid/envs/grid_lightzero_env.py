@@ -99,7 +99,11 @@ class MyGridEnv(BaseEnv):
         self._eval_episode_return = 0
         obs = to_ndarray(obs)
         print(f'obs shape={obs.shape}')
-        action_mask = np.ones(self.action_space.n, 'int8')
+        
+        #action_mask = np.ones(self.action_space.n, 'int8')
+        # 参考 gomoku_env.py的定义
+        action_mask = np.zeros(grid_size*grid_size, 'int8')
+        action_mask[self.legal_actions] = 1 # 
         obs = {'observation': obs, 'action_mask': action_mask, 'to_play': -1}
 
         return obs
@@ -173,6 +177,7 @@ class MyGridEnv(BaseEnv):
 
     @property
     def legal_actions(self):
+        # 加上@property 可以将legal_actions() 当作属性直接这么用 self.legal_actions
         #return np.arange(self._action_space.n)
         return np.array(self.legal_actions(),dtype=np.int64)
 
