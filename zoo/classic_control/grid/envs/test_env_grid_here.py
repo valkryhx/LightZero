@@ -11,7 +11,7 @@ config = EasyDict(dict(
     replay_path=None,
 ))
 # Test the environment
-env = MyGridEnv()
+env = MyGridEnv(config)
 obs = env.reset()
 env.render()
 
