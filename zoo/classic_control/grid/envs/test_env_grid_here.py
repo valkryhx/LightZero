@@ -1,11 +1,6 @@
-
-import gymnasium as gym
-import numpy as np
-import pygame
-#Maze config
-from zoo.classic_control.grid.grid.grid import GridEnv
+from easydict import EasyDict
 from zoo.classic_control.grid.envs.grid_lightzero_env import MyGridEnv
-from gymnasium.envs.registration import register
+
 
 config = EasyDict(dict(
     replay_path=None,
