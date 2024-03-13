@@ -60,7 +60,7 @@ class GridEnv(gym.Env):
         # setting display size
         #self.screen = pygame.display.set_mode((self.num_cols * self.cell_size, self.num_rows * self.cell_size))
     def legal_actions(self):
-        legal_actions = self._actions
+        legal_actions = list(self._actions)
         if self.position and len(self.position)>1:
             # for example self.position=[2,9]
             #chosen_action = self.position[0]*grid_size + self.position[1]
