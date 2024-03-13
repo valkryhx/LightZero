@@ -3,13 +3,15 @@ import gymnasium as gym
 import numpy as np
 import pygame
 #Maze config
-from zoo.classic_control.grid.grid.grid import GridEnv
+#from zoo.classic_control.grid.grid.grid import GridEnv  这是错误的导入 下面这个才是正确的 注意本文件的路径与grid包是平级 所以直接用grid.grid
+from grid.grid import GridEnv
 
 from gymnasium.envs.registration import register
 
 register(
      id="MyGrid-v1",
-     entry_point="zoo.classic_control.grid.grid.grid:GridEnv",
+     #entry_point="zoo.classic_control.grid.grid.grid:GridEnv", 这是错误的导入 下面这个才是正确的 注意本文件的路径与grid包是平级 所以直接用grid.grid
+     entry_point="grid.grid:GridEnv",
      max_episode_steps=5,#300,
 )
 

@@ -1,5 +1,6 @@
 from easydict import EasyDict
-from zoo.classic_control.grid.envs.grid_lightzero_env import MyGridEnv
+#from zoo.classic_control.grid.envs.grid_lightzero_env import MyGridEnv  这个import的路径不对 应该从本文件本机路径开始找
+from grid_lightzero_env import MyGridEnv
 
 
 config = EasyDict(dict(
