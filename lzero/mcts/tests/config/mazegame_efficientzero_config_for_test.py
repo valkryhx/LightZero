@@ -70,7 +70,7 @@ mymaze_efficientzero_config = dict(
             frame_stack_num=1,
         ),
         cuda=True,
-        lstm_horizon_len=2,
+        lstm_horizon_len=-2,
         
         # add from https://github.com/opendilab/LightZero/blob/6d98c0ea56407578a08244b0c34edc93833e9e45/lzero/mcts/tests/config/tictactoe_efficientzero_bot_mode_config_for_test.py#L70
         num_unroll_steps=5,
