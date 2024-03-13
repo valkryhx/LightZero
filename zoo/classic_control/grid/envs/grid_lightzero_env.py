@@ -46,7 +46,7 @@ class MyGridEnv(BaseEnv):
         cfg.cfg_type = cls.__name__ + 'Dict'
         return cfg
 
-    def __init__(self, cfg: dict = config) -> None:  # cfg: dict = {}
+    def __init__(self, cfg: dict = {}) -> None:  
         """
         Initialize the environment with a configuration dictionary. Sets up spaces for observations, actions, and rewards.
         """
@@ -167,7 +167,7 @@ class MyGridEnv(BaseEnv):
          Generate a random action using the action space's sample method. Returns a numpy array containing the action.
          """
         random_action = self.action_space.sample()
-        random_action = to_ndarray([random_action], dtype=np.int64)
+        #random_action = to_ndarray([random_action], dtype=np.int64)
         return random_action
 
 
