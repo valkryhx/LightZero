@@ -17,8 +17,8 @@ reanalyze_ratio = 0
 # end of the most frequently changed config specified by the user
 # ==============================================================
 
-mymaze_muzero_config = dict(
-    exp_name=f'data_mz_ctree/mymaze_muzero_ns{num_simulations}_upc{update_per_collect}_rr{reanalyze_ratio}_seed0',
+mymaze_efficientzero_config = dict(
+    exp_name=f'data_mz_ctree/mymaze_efficientzero_ns{num_simulations}_upc{update_per_collect}_rr{reanalyze_ratio}_seed0',
     env=dict(
         env_id='MyMaze-v1',
         continuous=False,
@@ -51,7 +51,7 @@ mymaze_muzero_config = dict(
             # add 
             model_type='conv',  # options={'mlp', 'conv'}
             # support_scale 和 categorical_distribution=True 搭配使用 categorical_distribution 默认是True
-            # https://github.com/valkryhx/LightZero/blob/4d73183c5b3a40cba3a5a66bf792bb87016d92d2/lzero/policy/muzero.py#L52C13-L52C86
+            # https://github.com/valkryhx/LightZero/blob/4d73183c5b3a40cba3a5a66bf792bb87016d92d2/lzero/policy/efficientzero.py#L52C13-L52C86
             support_scale=300, # 默认是300 可以用 support_scale=300 这个string来查
             reward_support_size=300*2+1,
             value_support_size=300*2+1,
@@ -66,12 +66,12 @@ mymaze_muzero_config = dict(
             
             num_res_blocks=2,
             num_channels=32,
-            ## add from lzero/mcts/tests/config/tictactoe_muzero_bot_mode_config_for_test.py#L70
+            ## add from lzero/mcts/tests/config/tictactoe_efficientzero_bot_mode_config_for_test.py#L70
             frame_stack_num=1,
         ),
         cuda=True,
         
-        # add from https://github.com/opendilab/LightZero/blob/6d98c0ea56407578a08244b0c34edc93833e9e45/lzero/mcts/tests/config/tictactoe_muzero_bot_mode_config_for_test.py#L70
+        # add from https://github.com/opendilab/LightZero/blob/6d98c0ea56407578a08244b0c34edc93833e9e45/lzero/mcts/tests/config/tictactoe_efficientzero_bot_mode_config_for_test.py#L70
         num_unroll_steps=5,
         td_steps=6,
         gray_scale=False,
@@ -97,21 +97,21 @@ mymaze_muzero_config = dict(
     ),
 )
 
-mymaze_muzero_config = EasyDict(mymaze_muzero_config)
-main_config = mymaze_muzero_config
+mymaze_efficientzero_config = EasyDict(mymaze_efficientzero_config)
+main_config = mymaze_efficientzero_config
 
-mymaze_muzero_create_config = dict(
+mymaze_efficientzero_create_config = dict(
     env=dict(
         type='mymaze_lightzero',
         import_names=['zoo.classic_control.mazegame.envs.mazegame_lightzero_env'],
     ),
     env_manager=dict(type='subprocess'),
     policy=dict(
-        #type='muzero',
-        #import_names=['lzero.policy.muzero'],
+        #type='efficientzero',
+        #import_names=['lzero.policy.efficientzero'],
         type='efficientzero',
         import_names=['lzero.policy.efficientzero'],
     ),
 )
-mymaze_muzero_create_config = EasyDict(mymaze_muzero_create_config)
-create_config = mymaze_muzero_create_config
+mymaze_efficientzero_create_config = EasyDict(mymaze_efficientzero_create_config)
+create_config = mymaze_efficientzero_create_config
