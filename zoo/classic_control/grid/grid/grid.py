@@ -82,7 +82,7 @@ class GridEnv(gym.Env):
         #observation = self.grid.flatten()
         # flatten 把二维3x3 拉成 单独的1维为9的numpy array
         #return observation.flatten()
-        return numpy.array(observation)
+        return numpy.array(observation,dtype=numpy.float32)
         #return [[observation]]   
 
         
