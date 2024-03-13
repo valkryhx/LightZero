@@ -22,6 +22,7 @@ class GridEnv(gym.Env):
         self.size = grid_size# size        
         self.MARK_NEGATIVE = -1.0        
         self.agent_get_reward =0
+        
         # 原始的action space为[0,100)
         
         # 每次step都会更新 _used_actions ，使用_actions - _used_actions - _invalid_actions，剩下的才是合法的action space
@@ -39,7 +40,9 @@ class GridEnv(gym.Env):
         numpy.fill_diagonal(self.grid, self.MARK_NEGATIVE)
         # marked_position rest
         self.mark = numpy.zeros([grid_size,grid_size])
-         
+        
+        self.h_score = self.heuristic_score()
+        #print(f'h_score={self.h_score}')
         self._used_actions=set([])
         # invalid actions 比如0 11,22,,,99
         self._invalid_actions = set([i for i in range(grid_size*grid_size) if i//grid_size == i%grid_size])
@@ -72,7 +75,24 @@ class GridEnv(gym.Env):
             legal_actions = legal_actions -self._invalid_actions -  self._used_actions
         #print(f'legal_actions={legal_actions}')
         return list(legal_actions) #list(self._actions)
-        
+    
+    def heuristic_score(self):
+        heuristic_score = 0.0
+        grid_copy = self.grid.copy()
+        while numpy.max(grid_copy)> self.MARK_NEGATIVE/2.0 :
+            #print(grid_copy)
+            #print(np.max(grid_copy))
+            heuristic_score += numpy.max(grid_copy)
+            m = numpy.argmax(grid_copy)                # 把矩阵拉成一维，m是在一维数组中最大值的下标
+            row, col = divmod(m, grid_copy.shape[1])    # r和c分别为商和余数，即最大值在矩阵中的行和列 # m是被除数， a.shape[1]是除数
+            #print(f'h_action={m,[row, col]},h_step_reward={numpy.max(grid_copy)}')
+            grid_copy[[row,col],:]=self.MARK_NEGATIVE 
+            grid_copy[:,[row,col]]=self.MARK_NEGATIVE
+            #print(grid)
+        #print(f'heuristic_score ={heuristic_score}')
+        #print(f'h_s={heuristic_scores}')
+        #assert False
+        return heuristic_score    
     def get_observation(self):
         #observation = numpy.zeros((self.size, self.size))
         #observation[self.position[0]][self.position[1]] = 1
@@ -107,7 +127,7 @@ class GridEnv(gym.Env):
         #self.invalid_3 = numpy.zeros([grid_size,grid_size])
         #self.invalid_4 = numpy.zeros([grid_size,grid_size])
         # h score reset 
-        #self.h_score = self.heuristic_score()
+        self.h_score = self.heuristic_score()
         self.agent_get_reward =0
         # 每次step都会更新 _used_actions ，使用_actions - _used_actions - _invalid_actions，剩下的才是合法的action space
         self._used_actions=set([])
@@ -171,6 +191,18 @@ class GridEnv(gym.Env):
             
         truncated=False# 占位用 无意义
         return self.get_observation(), reward, done, truncated,{}#bool(reward)
+
+    def random_action(self) -> numpy.ndarray:
+        """
+         Generate a random action using the action space's sample method. Returns a numpy array containing the action.
+         """
+        # 在legal actions中随机选一个 而不是从所有actions中随机选
+        # 参考 gomoku_env.py
+        action_list = self.legal_actions()
+        return numpy.random.choice(action_list)
+        #random_action = self.action_space.sample()
+        #random_action = to_ndarray([random_action], dtype=np.int64)
+        #return random_action
 
     def _is_valid_position(self, pos):
         row, col = pos

@@ -28,5 +28,5 @@ while i<10:
     #pygame.time.wait(200)  
     i += 1
     if done:
-                print(info)
-                break
+        print(info)
+        break
