@@ -102,9 +102,8 @@ class MyGridEnv(BaseEnv):
         
         #action_mask = np.ones(self.action_space.n, 'int8')
         # 参考 gomoku_env.py的定义
-        """WARN: env.legal_actions to get variables from other wrappers is deprecated and will be removed in v1.0, to get this variable you can do `env.unwrapped.legal_actions` for environment variables or `env.get_attr('legal_actions')` that will search the reminding wrappers."""
         action_mask = np.zeros(grid_size*grid_size, 'int8')
-        action_mask[self.unwrapped.legal_actions] = 1 # 
+        action_mask[self.legal_actions] = 1 # 
         #print(f'self.legal_actions={self.legal_actions}')
         obs = {'observation': obs, 'action_mask': action_mask, 'to_play': -1}
 
@@ -142,7 +141,7 @@ class MyGridEnv(BaseEnv):
         #action_mask = np.ones(self.action_space.n, 'int8')
         # 参考 gomoku_env.py的def _player_step定义 实时更新action_mask 
         action_mask = np.zeros(grid_size*grid_size, 'int8')
-        action_mask[self.unwrapped.legal_actions] = 1 # 
+        action_mask[self.legal_actions] = 1 # 
         obs = {'observation': obs, 'action_mask': action_mask, 'to_play': -1}
 
         return BaseEnvTimestep(obs, rew, done, info)
@@ -177,7 +176,7 @@ class MyGridEnv(BaseEnv):
          """
         # 在legal actions中随机选一个 而不是从所有actions中随机选
         # 参考 gomoku_env.py
-        action_list = self.unwrapped.legal_actions
+        action_list = self.legal_actions
         return np.random.choice(action_list)
         #random_action = self.action_space.sample()
         #random_action = to_ndarray([random_action], dtype=np.int64)
@@ -189,6 +188,10 @@ class MyGridEnv(BaseEnv):
         # 加上@property 可以将legal_actions() 当作属性直接这么用 self.legal_actions
         #return np.arange(self._action_space.n)
         #return np.array(self._env.legal_actions(),dtype=np.int64
+        # unwrapped 来源         """WARN: env.legal_actions to get variables from other wrappers is deprecated and will be removed in v1.0, 
+        #to get this variable you can do `env.unwrapped.legal_actions` for environment variables or 
+        #`env.get_attr('legal_actions')` that will search the reminding wrappers."""
+
         return self._env.unwrapped.legal_actions()
 
     @property
