@@ -13,7 +13,7 @@ num_simulations = 40
 
 
 update_per_collect = 100
-batch_size = 256#16# 256
+batch_size = 16#16# 256
 
 # 使用 efficientzero 那么减少max_env_step 试试
 max_env_step =int(8e4)# int(6e3)# int(1e5) #max_env_step * num_simulations /num_unroll_steps =learner.train_iter=2000
@@ -50,7 +50,7 @@ mygrid_efficientzero_config = dict(
             discrete_action_encoding_type='one_hot',
             #norm_type='BN', 
             
-            num_res_blocks=4,#2,
+            num_res_blocks=2,#2,
             num_channels=64,#32,
             # add 虽然默认是300 但是还是明确写出来好
             # # support_scale 和 categorical_distribution=True 搭配使用 categorical_distribution 默认是True
