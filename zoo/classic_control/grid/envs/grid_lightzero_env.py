@@ -188,7 +188,8 @@ class MyGridEnv(BaseEnv):
         # 加上@property 可以将legal_actions() 当作属性直接这么用 self.legal_actions
         #return np.arange(self._action_space.n)
         #return np.array(self._env.legal_actions(),dtype=np.int64
-        # unwrapped 来源         """WARN: env.legal_actions to get variables from other wrappers is deprecated and will be removed in v1.0, 
+        # unwrapped 来源 跟加了@property 注解有关       会报warning
+        # """WARN: env.legal_actions to get variables from other wrappers is deprecated and will be removed in v1.0, 
         #to get this variable you can do `env.unwrapped.legal_actions` for environment variables or 
         #`env.get_attr('legal_actions')` that will search the reminding wrappers."""
 
