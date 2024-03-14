@@ -38,6 +38,7 @@ mygrid_efficientzero_config = dict(
         manager=dict(shared_memory=False, ),
     ),
     policy=dict(
+        model_path="/kaggle/working/LightZero/data_mz_ctree/123/ckpt/ckpt_best.pth.tar" ,
         model=dict(
             observation_shape=(3,grid_size,grid_size),#16,#4,
             channel_last=False,
