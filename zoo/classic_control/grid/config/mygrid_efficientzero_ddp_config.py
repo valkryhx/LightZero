@@ -7,7 +7,7 @@ logging.basicConfig(level=logging.ERROR)
 # ==============================================================
 
 collector_env_num = 8
-# 多卡 训练 修改gpu_num 和 main函数中的启动方式
+# 多卡 训练 修改gpu_num 和 multi_gpu=True, main函数中的启动方式
 # https://github.com/opendilab/LightZero/issues/196
 gpu_num = 2
 n_episode = int(8*gpu_num)#8
@@ -68,7 +68,7 @@ mygrid_efficientzero_config = dict(
             
         ),
         cuda=True,
-
+        multi_gpu=True,
         num_unroll_steps=5,
         td_steps=5,
 
