@@ -123,7 +123,7 @@ mygrid_efficientzero_create_config = EasyDict(mygrid_efficientzero_create_config
 create_config = mygrid_efficientzero_create_config
 
 if __name__ == "__main__":
-    
+    print(f'!!!config updated with save freq!!!')
     # Users can use different train entry by specifying the entry_type.
     entry_type = "train_muzero"  # options={"train_muzero", "train_muzero_with_gym_env"}
 
@@ -152,7 +152,7 @@ if __name__ == "__main__":
         print(f"带pretrained model ckpt的继续train模式")
         train_muzero([main_config, create_config], seed=0, model_path =sys.argv[2],max_env_step=max_env_step)
     else :
-        print(f'config updated with save freq')
+        print(f'!!!config updated with save freq!!!')
         print(f"从0头开始的train模式")
         train_muzero([main_config, create_config], seed=0, max_env_step=max_env_step)
         #res = eval_muzero(
