@@ -104,7 +104,7 @@ save_freq_dict={
     },
 }
 mygrid_efficientzero_config.update(save_freq_dict)
-print(f'config updated with save freq')
+
 mygrid_efficientzero_config = EasyDict(mygrid_efficientzero_config )
 main_config = mygrid_efficientzero_config
 
@@ -123,6 +123,7 @@ mygrid_efficientzero_create_config = EasyDict(mygrid_efficientzero_create_config
 create_config = mygrid_efficientzero_create_config
 
 if __name__ == "__main__":
+    print(f'config updated with save freq')
     # Users can use different train entry by specifying the entry_type.
     entry_type = "train_muzero"  # options={"train_muzero", "train_muzero_with_gym_env"}
 
