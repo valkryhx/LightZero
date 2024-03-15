@@ -86,12 +86,24 @@ mygrid_efficientzero_config = dict(
         reanalyze_ratio=reanalyze_ratio,
         n_episode=n_episode,
         eval_freq=int(2e2),#int(50),
+        
         replay_buffer_size=int(1e6),  # the size/capacity of replay_buffer, in the terms of transitions.
         collector_env_num=collector_env_num,
         evaluator_env_num=evaluator_env_num,
     ),
 )
-
+save_freq_dict={
+    'learn': {
+        'learner': {
+            'hook': {
+                'log_show_after_iter': 200,
+                'save_ckpt_after_iter': 200,   # Set this to your desired frequency
+                'save_ckpt_after_run': True,
+            },
+        },
+    },
+}
+mygrid_efficientzero_config.update(save_freq_dict)
 mygrid_efficientzero_config = EasyDict(mygrid_efficientzero_config )
 main_config = mygrid_efficientzero_config
 
