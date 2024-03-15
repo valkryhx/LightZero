@@ -158,7 +158,7 @@ def train_muzero(
             collect_kwargs['epsilon'] = 0.0
 
         # Evaluate policy performance.
-        print(f'learner.train_iter={learner.train_iter},',end="\r")
+        print(f'learner.train_iter={learner.train_iter}',end="\r")
         if evaluator.should_eval(learner.train_iter):
             if cfg.policy.eval_offline:
                 eval_train_iter_list.append(learner.train_iter)
