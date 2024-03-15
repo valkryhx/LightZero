@@ -104,6 +104,7 @@ save_freq_dict={
     },
 }
 mygrid_efficientzero_config.update(save_freq_dict)
+print(f'config updated with save freq')
 mygrid_efficientzero_config = EasyDict(mygrid_efficientzero_config )
 main_config = mygrid_efficientzero_config
 
