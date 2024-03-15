@@ -5,8 +5,12 @@ logging.basicConfig(level=logging.ERROR)
 # ==============================================================
 # begin of the most frequently changed config specified by the user
 # ==============================================================
+
 collector_env_num = 8
-n_episode = 8
+# 多卡
+# https://github.com/opendilab/LightZero/issues/196
+gpu_num = 2
+n_episode = int(8*gpu_num)#8
 
 evaluator_env_num = 100
 num_simulations = 40
@@ -25,7 +29,7 @@ reanalyze_ratio = 0
 grid_size = 10
 
 mygrid_efficientzero_config = dict(
-    exp_name=f'data_mz_ctree/mygrid_efficientzero_ns{num_simulations}_upc{update_per_collect}_rr{reanalyze_ratio}_seed0',
+    exp_name=f'data_mz_ctree/mygrid_efficientzero_ns{num_simulations}_upc{update_per_collect}_rr{reanalyze_ratio}_ddp_{gpu_num}gpu_seed0',
     env=dict(
         env_id='MyGrid-v1',
         continuous=False,
