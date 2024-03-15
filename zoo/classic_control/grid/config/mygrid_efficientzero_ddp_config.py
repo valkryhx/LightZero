@@ -134,13 +134,14 @@ if __name__ == "__main__":
             num_episodes_each_seed= 1
             )
         print(res)
-    """
-    单机多卡训练的启动方式:
+    
+    elif len(sys.argv)>=3 and sys.argv[1]=='train' :
+        """
+        单机多卡训练的启动方式:
         This script should be executed with <nproc_per_node> GPUs.
         Run the following command to launch the script:
         python -m torch.distributed.launch --nproc_per_node=2 ./LightZero/zoo/atari/config/atari_muzero_multigpu_ddp_config.py
-    """
-    elif len(sys.argv)>=3 and sys.argv[1]=='train' :
+        """
         from ding.utils import DDPContext
         from lzero.entry import train_muzero
         from lzero.config.utils import lz_to_ddp_config
@@ -149,6 +150,12 @@ if __name__ == "__main__":
             print(f"ddp单机多卡 带pretrained model ckpt的继续train模式")
             train_muzero([main_config, create_config], seed=0, model_path =sys.argv[2],max_env_step=max_env_step)
     else :
+        """
+        单机多卡训练的启动方式:
+        This script should be executed with <nproc_per_node> GPUs.
+        Run the following command to launch the script:
+        python -m torch.distributed.launch --nproc_per_node=2 ./LightZero/zoo/atari/config/atari_muzero_multigpu_ddp_config.py
+        """
         from ding.utils import DDPContext
         from lzero.entry import train_muzero
         from lzero.config.utils import lz_to_ddp_config
