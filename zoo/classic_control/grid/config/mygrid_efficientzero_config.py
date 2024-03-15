@@ -12,12 +12,12 @@ collector_env_num = 8
 
 n_episode = 8
 
-evaluator_env_num = 100
+evaluator_env_num = 50
 num_simulations = 40
 
 
 update_per_collect = 100
-batch_size = 160#16# 256
+batch_size = 10#16# 256
 
 # 使用 efficientzero 那么减少max_env_step 试试
 max_env_step =int(2e5)# int(6e3)# int(1e5) #max_env_step * num_simulations /num_unroll_steps =learner.train_iter=2000
