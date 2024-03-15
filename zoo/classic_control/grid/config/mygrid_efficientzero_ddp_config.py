@@ -105,6 +105,10 @@ mygrid_efficientzero_create_config = dict(
         type='efficientzero',#'muzero',
         import_names=['lzero.policy.efficientzero'],#['lzero.policy.muzero'],
     ),
+    collector=dict(
+        type='episode_muzero',
+        import_names=['lzero.worker.muzero_collector'],
+    )
 )
 mygrid_efficientzero_create_config = EasyDict(mygrid_efficientzero_create_config)
 create_config = mygrid_efficientzero_create_config
