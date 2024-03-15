@@ -7,10 +7,10 @@ logging.basicConfig(level=logging.ERROR)
 # ==============================================================
 
 collector_env_num = 8
-# 多卡
+# 多卡 训练 修改gpu_num 和 main函数中的启动方式
 # https://github.com/opendilab/LightZero/issues/196
-
-n_episode = 8
+gpu_num = 2
+n_episode = int(8*gpu_num)#8
 
 evaluator_env_num = 100
 num_simulations = 40
@@ -29,7 +29,7 @@ reanalyze_ratio = 0
 grid_size = 10
 
 mygrid_efficientzero_config = dict(
-    exp_name=f'data_mz_ctree/mygrid_efficientzero_ns{num_simulations}_upc{update_per_collect}_rr{reanalyze_ratio}_seed0',
+    exp_name=f'data_mz_ctree/mygrid_efficientzero_ns{num_simulations}_upc{update_per_collect}_rr{reanalyze_ratio}_ddp_{gpu_num}gpu_seed0',
     env=dict(
         env_id='MyGrid-v1',
         continuous=False,
@@ -134,17 +134,26 @@ if __name__ == "__main__":
             num_episodes_each_seed= 1
             )
         print(res)
+    """
+    单机多卡训练的启动方式:
+        This script should be executed with <nproc_per_node> GPUs.
+        Run the following command to launch the script:
+        python -m torch.distributed.launch --nproc_per_node=2 ./LightZero/zoo/atari/config/atari_muzero_multigpu_ddp_config.py
+    """
     elif len(sys.argv)>=3 and sys.argv[1]=='train' :
-        print(f"带pretrained model ckpt的继续train模式")
-        train_muzero([main_config, create_config], seed=0, model_path =sys.argv[2],max_env_step=max_env_step)
+        from ding.utils import DDPContext
+        from lzero.entry import train_muzero
+        from lzero.config.utils import lz_to_ddp_config
+        with DDPContext():
+            main_config = lz_to_ddp_config(main_config)
+            print(f"ddp单机多卡 带pretrained model ckpt的继续train模式")
+            train_muzero([main_config, create_config], seed=0, model_path =sys.argv[2],max_env_step=max_env_step)
     else :
-        print(f"从0头开始的train模式")
-        train_muzero([main_config, create_config], seed=0, max_env_step=max_env_step)
-        #res = eval_muzero(
-        #    input_cfg=[main_config, create_config],
-        #    seed= 0,
-        #    model= None,
-        #    model_path = '/kaggle/working/LightZero/data_mz_ctree/cartpole_muzero_ns25_upc100_rr0_seed0_240229_114840/ckpt/ckpt_best.pth.tar',
-        #    num_episodes_each_seed= 1,
-        #    print_seed_details= False)
-        #print(res)
+        from ding.utils import DDPContext
+        from lzero.entry import train_muzero
+        from lzero.config.utils import lz_to_ddp_config
+        with DDPContext():
+            main_config = lz_to_ddp_config(main_config)
+            print(f"ddp单机多卡 从头开始的train模式")
+            train_muzero([main_config, create_config], seed=0, max_env_step=max_env_step)
+
