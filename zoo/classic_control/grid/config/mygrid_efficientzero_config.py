@@ -13,7 +13,7 @@ collector_env_num = 8
 n_episode = 8
 
 evaluator_env_num = 50
-num_simulations = 40
+num_simulations = 40 #
 
 
 update_per_collect = 50
