@@ -44,7 +44,7 @@ mygrid_efficientzero_config = dict(
     policy=dict(
         
         model=dict(
-            observation_shape=(3,grid_size,grid_size),#16,#4,
+            observation_shape=(3*frame_stack_num,grid_size,grid_size),#16,#4,
             channel_last=False,
             image_channel=3,#1,
             action_space_size=grid_size*grid_size,#4,#2,
@@ -54,7 +54,7 @@ mygrid_efficientzero_config = dict(
             self_supervised_learning_loss=True,  # NOTE: default is False.
             discrete_action_encoding_type='one_hot',
             norm_type='BN', 
-            frame_stack_num=3,
+            frame_stack_num=frame_stack_num,
             
             num_res_blocks=4,#2,
             num_channels=64,#32,
