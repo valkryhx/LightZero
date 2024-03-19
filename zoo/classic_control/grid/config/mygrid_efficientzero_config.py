@@ -16,7 +16,7 @@ evaluator_env_num = 50
 num_simulations = 40
 
 
-update_per_collect = 40
+update_per_collect = 50
 batch_size = 16#256#100#16# 256
 
 # 使用 efficientzero 那么减少max_env_step 试试
