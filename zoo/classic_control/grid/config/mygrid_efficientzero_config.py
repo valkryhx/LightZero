@@ -54,7 +54,7 @@ mygrid_efficientzero_config = dict(
             self_supervised_learning_loss=True,  # NOTE: default is False.
             discrete_action_encoding_type='one_hot',
             norm_type='BN', 
-            frame_stack_num=3，
+            frame_stack_num=3,
             
             num_res_blocks=4,#2,
             num_channels=64,#32,
