@@ -16,8 +16,8 @@ evaluator_env_num = 50
 num_simulations = 40
 
 
-update_per_collect = 100
-batch_size = 100#16# 256
+update_per_collect = 40
+batch_size = 256#100#16# 256
 
 # 使用 efficientzero 那么减少max_env_step 试试
 max_env_step =int(2e5)# int(6e3)# int(1e5) #max_env_step * num_simulations /num_unroll_steps =learner.train_iter=2000
@@ -53,23 +53,24 @@ mygrid_efficientzero_config = dict(
             #latent_state_dim=128,
             self_supervised_learning_loss=True,  # NOTE: default is False.
             discrete_action_encoding_type='one_hot',
-            #norm_type='BN', 
+            norm_type='BN', 
+            frame_stack_num=3,
             
-            num_res_blocks=2,#2,
+            num_res_blocks=4,#2,
             num_channels=64,#32,
             # add 虽然默认是300 但是还是明确写出来好
             # # support_scale 和 categorical_distribution=True 搭配使用 categorical_distribution 默认是True
             # https://github.com/valkryhx/LightZero/blob/4d73183c5b3a40cba3a5a66bf792bb87016d92d2/lzero/policy/muzero.py#L52C13-L52C86
-            support_scale=300,
-            reward_support_size=300*2 + 1,
-            value_support_size=300*2 + 1,
+            support_scale=50,
+            reward_support_size=50*2 + 1,
+            value_support_size=50*2 + 1,
             # add 默认是True 但这里也明确写出来 
             categorical_distribution=True,
             
         ),
         cuda=True,
 
-        num_unroll_steps=5,
+        num_unroll_steps=2,
         td_steps=5,
 
         env_type='not_board_games',
