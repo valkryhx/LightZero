@@ -44,7 +44,7 @@ mygrid_efficientzero_config = dict(
     policy=dict(
         
         model=dict(
-            observation_shape=(3*frame_stack_num,grid_size,grid_size),#16,#4,
+            observation_shape=(3,grid_size,grid_size),#16,#4,
             channel_last=False,
             #image_channel=3,#1,
             action_space_size=grid_size*grid_size,#4,#2,
