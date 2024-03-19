@@ -27,7 +27,7 @@ reanalyze_ratio = 0
 # 所有配置和mazegame_muzero_config_for_test.py 保持一致
 # ==============================================================
 grid_size = 10
-frame_stack_num=3
+#frame_stack_num=3
 mygrid_efficientzero_config = dict(
     exp_name=f'data_mz_ctree/mygrid_efficientzero_ns{num_simulations}_upc{update_per_collect}_rr{reanalyze_ratio}_seed0',
     env=dict(
@@ -54,7 +54,7 @@ mygrid_efficientzero_config = dict(
             self_supervised_learning_loss=True,  # NOTE: default is False.
             discrete_action_encoding_type='one_hot',
             norm_type='BN', 
-            frame_stack_num=frame_stack_num,
+           
             
             num_res_blocks=4,#2,
             num_channels=64,#32,
@@ -70,7 +70,7 @@ mygrid_efficientzero_config = dict(
         ),
         cuda=True,
 
-        num_unroll_steps=2,
+        num_unroll_steps=3,
         td_steps=5,
 
         env_type='not_board_games',
