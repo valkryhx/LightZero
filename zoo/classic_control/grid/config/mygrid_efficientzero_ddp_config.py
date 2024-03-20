@@ -92,7 +92,21 @@ mygrid_efficientzero_config = dict(
     ),
 )
 
+save_freq_dict={
+    'learn': {
+        'learner': {
+            'hook': {
+                'log_show_after_iter': 400,
+                'save_ckpt_after_iter': 400,   # Set this to your desired frequency
+                'save_ckpt_after_run': True,
+            },
+        },
+    },
+}
+
 mygrid_efficientzero_config = EasyDict(mygrid_efficientzero_config )
+# https://github.com/opendilab/LightZero/issues/196#issuecomment-2006133687
+mygrid_efficientzero_config.policy.update(save_freq_dict)
 main_config = mygrid_efficientzero_config
 
 mygrid_efficientzero_create_config = dict(
