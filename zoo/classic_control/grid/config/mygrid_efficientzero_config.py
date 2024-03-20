@@ -99,7 +99,7 @@ save_freq_dict={
             'hook': {
                 'log_show_after_iter': 200,
                 'save_ckpt_after_iter': 200,   # Set this to your desired frequency
-                'save_ckpt_after_run': True,
+                'save_ckpt_after_run': False,
             },
         },
     },
