@@ -24,3 +24,7 @@ support_scale=300, # 默认是300 可以用 support_scale=300 这个string来查
 
 model 参数含义
 https://github.com/valkryhx/LightZero/blob/4d73183c5b3a40cba3a5a66bf792bb87016d92d2/lzero/policy/muzero.py#L53
+
+git 上游同步方法  如果有冲突就将自己修改的文件在别处保存后删除，再执行如下操作 最后记得对比上游文件。
+https://github.com/selfteaching/the-craft-of-selfteaching/issues/67
+https://gitbook.tw/chapters/github/syncing-a-fork
