@@ -17,7 +17,7 @@ num_simulations = 40
 
 
 update_per_collect = 100
-batch_size = 20#16# 256
+batch_size = 20*gpu_num#16# 256
 
 # 使用 efficientzero 那么减少max_env_step 试试
 max_env_step =int(2e5)# int(6e3)# int(1e5) #max_env_step * num_simulations /num_unroll_steps =learner.train_iter=2000
@@ -96,8 +96,8 @@ save_freq_dict={
     'learn': {
         'learner': {
             'hook': {
-                'log_show_after_iter': 400,
-                'save_ckpt_after_iter': 400,   # Set this to your desired frequency
+                'log_show_after_iter': 4000,
+                'save_ckpt_after_iter': 4000,   # Set this to your desired frequency
                 'save_ckpt_after_run': True,
             },
         },
