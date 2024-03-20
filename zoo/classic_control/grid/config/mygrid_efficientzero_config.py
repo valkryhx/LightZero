@@ -17,7 +17,7 @@ num_simulations = 40 #
 
 
 update_per_collect = 50
-batch_size = 16#256#100#16# 256
+batch_size = 20#256#100#16# 256
 
 # 使用 efficientzero 那么减少max_env_step 试试
 max_env_step =int(4e5)# int(6e3)# int(1e5) #max_env_step * num_simulations /num_unroll_steps =learner.train_iter=2000
@@ -27,7 +27,7 @@ reanalyze_ratio = 0
 # 所有配置和mazegame_muzero_config_for_test.py 保持一致
 # ==============================================================
 grid_size = 10
-frame_stack_num=3
+frame_stack_num=1#3
 mygrid_efficientzero_config = dict(
     exp_name=f'data_mz_ctree/mygrid_efficientzero_ns{num_simulations}_upc{update_per_collect}_rr{reanalyze_ratio}_seed0',
     env=dict(
@@ -56,14 +56,14 @@ mygrid_efficientzero_config = dict(
             norm_type='BN', 
             frame_stack_num=frame_stack_num,
             
-            num_res_blocks=4,#2,
+            num_res_blocks=2,#2,
             num_channels=64,#32,
             # add 虽然默认是300 但是还是明确写出来好
             # # support_scale 和 categorical_distribution=True 搭配使用 categorical_distribution 默认是True
             # https://github.com/valkryhx/LightZero/blob/4d73183c5b3a40cba3a5a66bf792bb87016d92d2/lzero/policy/muzero.py#L52C13-L52C86
-            support_scale=50,
-            reward_support_size=50*2 + 1,
-            value_support_size=50*2 + 1,
+            support_scale=300,
+            reward_support_size=300*2 + 1,
+            value_support_size=300*2 + 1,
             # add 默认是True 但这里也明确写出来 
             categorical_distribution=True,
             
