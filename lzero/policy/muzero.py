@@ -168,6 +168,8 @@ class MuZeroPolicy(Policy):
         fixed_temperature_value=0.25,
         # (bool) Whether to use the true chance in MCTS in some environments with stochastic dynamics, such as 2048.
         use_ture_chance_label_in_chance_encoder=False,
+        # (bool) Whether to add noise to roots during reanalyze process.
+        reanalyze_noise=False,
 
         # ****** Priority ******
         # (bool) Whether to use priority when sampling training data from the buffer.
@@ -362,8 +364,7 @@ class MuZeroPolicy(Policy):
             ).detach().cpu()
 
         # calculate the new priorities for each transition.
-        value_priority = L1Loss(reduction='none')(original_value.squeeze(-1), target_value[:, 0])
-        value_priority = value_priority.data.cpu().numpy() + 1e-6
+        value_priority = L1Loss(reduction='none')(original_value.squeeze(-1), target_value[:, 0]) + 1e-6
 
         # ==============================================================
         # calculate policy and value loss for the first step.
@@ -489,8 +490,8 @@ class MuZeroPolicy(Policy):
             # ==============================================================
             # priority related
             # ==============================================================
-            'value_priority_orig': value_priority,
             'value_priority': value_priority.mean().item(),
+            'value_priority_orig': value_priority,  # torch.tensor compatible with ddp settings
         }
 
     def _init_collect(self) -> None:
