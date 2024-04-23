@@ -81,11 +81,11 @@ mygrid_efficientzero_config = dict(
             
         ),
         cuda=True,
-
         num_unroll_steps=3,
         td_steps=5,
         
         # add
+        lstm_horizon_len=5 ,
         gray_scale=False,
         transform2string=False,
         discount_factor=1,
