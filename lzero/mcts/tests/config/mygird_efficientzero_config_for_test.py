@@ -40,6 +40,10 @@ mygrid_efficientzero_config = dict(
         evaluator_env_num=evaluator_env_num,
         n_evaluator_episode=evaluator_env_num,
         manager=dict(shared_memory=False, ),
+        # add 
+        replay_path=None,
+        save_replay_gif=False,
+        replay_path_gif='./replay_gif',
     ),
     policy=dict(
         
