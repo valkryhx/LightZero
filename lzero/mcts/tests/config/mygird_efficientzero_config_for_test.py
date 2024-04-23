@@ -84,6 +84,12 @@ mygrid_efficientzero_config = dict(
 
         num_unroll_steps=3,
         td_steps=5,
+        
+        # add
+        gray_scale=False,
+        transform2string=False,
+        discount_factor=1,
+        #add end
 
         env_type='not_board_games',
         action_type='varied_action_space',
@@ -98,7 +104,7 @@ mygrid_efficientzero_config = dict(
         num_simulations=num_simulations,
         reanalyze_ratio=reanalyze_ratio,
         n_episode=n_episode,
-        eval_freq=int(2e2),#int(50),
+        eval_freq=int(50),#int(50),
         
         replay_buffer_size=int(1e6),  # the size/capacity of replay_buffer, in the terms of transitions.
         collector_env_num=collector_env_num,
