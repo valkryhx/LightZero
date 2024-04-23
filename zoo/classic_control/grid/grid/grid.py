@@ -140,7 +140,7 @@ class GridEnv(gym.Env):
 
         
     def step(self, action):
-        print(f'********step_legal_actions={self.legal_actions()} and step_action={action}')
+        #print(f'********step_legal_actions={self.legal_actions()} and step_action={action}')
         if action not in self.legal_actions() or len(self.legal_actions())==0 :
             #如果模型给出的action在合法动作之外则本轮不移动而且reward为一个较大的惩罚项
             reward=-10 #因为动作在合法动作之外 所以给一个很大的惩罚项
