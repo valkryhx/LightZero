@@ -20,7 +20,7 @@ def test_game_segment(test_algo):
         from lzero.model.efficientzero_model import EfficientZeroModel as Model
         # 修改这里
         #from lzero.mcts.tests.config.atari_efficientzero_config_for_test import atari_efficientzero_config as config
-        from lzero.mcts.tests.config.mazegame_efficientzero_config_for_test import mymaze_efficientzero_config as config
+        from lzero.mcts.tests.config.mygird_efficientzero_config_for_test import mygrid_efficientzero_config as config
         #from zoo.atari.envs.atari_lightzero_env import AtariLightZeroEnv
         from zoo.classic_control.mazegame.envs.mazegame_lightzero_env import MyMazeEnv
         #envs = [AtariLightZeroEnv(config.env) for _ in range(config.env.evaluator_env_num)]
@@ -31,7 +31,7 @@ def test_game_segment(test_algo):
         from lzero.model.muzero_model import MuZeroModel as Model
         # 修改这里
         #from lzero.mcts.tests.config.tictactoe_muzero_bot_mode_config_for_test import tictactoe_muzero_config as config
-        from lzero.mcts.tests.config.mazegame_muzero_config_for_test import mymaze_muzero_config as config
+        from lzero.mcts.tests.config.mygird_efficientzero_config_for_test import mygrid_efficientzero_config as config
         #from zoo.board_games.tictactoe.envs.tictactoe_env import TicTacToeEnv
         from zoo.classic_control.mazegame.envs.mazegame_lightzero_env import MyMazeEnv
         #envs = [TicTacToeEnv(config.env) for _ in range(config.env.evaluator_env_num)]
