@@ -140,7 +140,7 @@ class GridEnv(gym.Env):
 
         
     def step(self, action):
-        #print(f'step legal actions={self.legal_actions()}')
+        print(f'********step_legal_actions={self.legal_actions()} and step_action={action}')
         if action not in self.legal_actions() or len(self.legal_actions())==0 :
             pass
         if not self.position:
