@@ -156,7 +156,7 @@ class GridEnv(gym.Env):
                 f"Illegal action: {action}. Legal actions: {self.legal_actions()}. "
                 "Choosing a random action from legal actions."
             )
-            action = np.random.choice(self.legal_actions())
+            action = numpy.random.choice(self.legal_actions())
         if not self.position:
             self.position =[-1,-1] # position[-1,-1]表示不在grid上的位置只是为了占位
         self.position[0] = action // grid_size
