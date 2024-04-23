@@ -155,7 +155,8 @@ class GridEnv(gym.Env):
         #if self.grid[self.position[0],self.position[1]]<=self.MARK_NEGATIVE:
         #    done = (numpy.max(self.mark) <= self.MARK_NEGATIVE) or len(self.legal_actions())==0
         #    return self.get_observation(), 0, done#bool(reward)
-        reward = self.grid[self.position[0],self.position[1]]  - self.mark[self.position[0],self.position[1]] #- self.h_score / (grid_size/2)
+        pos_penalty = self.mark[self.position[0],self.position[1]] if self.mark[self.position[0],self.position[1]]>=0 else 2.0
+        reward = self.grid[self.position[0],self.position[1]]  - pos_penalty #- self.h_score / (grid_size/2)
         self.agent_get_reward += reward
         #print(f'123reward={reward}')
         # grid 变化太剧烈? 所以换成mark来记录已经不能下的位置
