@@ -46,6 +46,14 @@ mygrid_efficientzero_config = dict(
         replay_path_gif='./replay_gif',
     ),
     policy=dict(
+        # 根据issue 这里增加sampled_algo , gumble_algo,use_ture_chance_label_in_chance_encoder,model_path
+        sampled_algo=False,
+        gumbel_algo=False,
+         mcts_ctree=True,
+        use_ture_chance_label_in_chance_encoder=False,
+        # add moel_path here
+        model_path="/kaggle/working/LightZero/data_mz_ctree/mygrid_efficientzero_ns40_upc50_rr0_seed0/ckpt/ckpt_best.pth.tar" ,
+        # add end 20240423
         
         model=dict(
             observation_shape=(3*frame_stack_num,grid_size,grid_size),#16,#4,
