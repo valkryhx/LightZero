@@ -73,7 +73,7 @@ class GridEnv(gym.Env):
             marked_col_act_1 = set([idx * grid_size + self.position[1] for idx in range(grid_size)])
             self._used_actions = self._used_actions | marked_row_act_0 | marked_row_act_1 | marked_col_act_0 | marked_col_act_1
             legal_actions = legal_actions -self._invalid_actions -  self._used_actions
-        print(f'legal_actions={legal_actions}')
+        #print(f'legal_actions={legal_actions}')
         return list(legal_actions) #list(self._actions)
     
     def heuristic_score(self):
