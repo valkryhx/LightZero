@@ -215,10 +215,6 @@ class GridEnv(gym.Env):
         # If agent goes out of the grid
         if row < 0 or col < 0 or row >= self.num_rows or col >= self.num_cols:
             return False
-
-        # If the agent hits an obstacle
-        if self.maze[row, col] == '#':
-            return False
         return True
 
   
