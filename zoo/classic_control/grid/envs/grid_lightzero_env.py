@@ -104,7 +104,7 @@ class MyGridEnv(BaseEnv):
         # 参考 gomoku_env.py的定义
         action_mask = np.zeros(grid_size*grid_size, 'int8')
         action_mask[self._env.legal_actions()] = 1 # 
-        #print(f'self.legal_actions={self.legal_actions}')
+        #print(f'self.legal_actions={self._env.legal_actions()}')
         obs = {'observation': obs, 'action_mask': action_mask, 'to_play': -1}
 
         return obs
@@ -176,7 +176,7 @@ class MyGridEnv(BaseEnv):
          """
         # 在legal actions中随机选一个 而不是从所有actions中随机选
         # 参考 gomoku_env.py
-        action_list = self.legal_actions
+        action_list = self._env.legal_actions()
         return np.random.choice(action_list)
         #random_action = self.action_space.sample()
         #random_action = to_ndarray([random_action], dtype=np.int64)
