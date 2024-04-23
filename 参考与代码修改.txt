@@ -28,3 +28,8 @@ https://github.com/valkryhx/LightZero/blob/4d73183c5b3a40cba3a5a66bf792bb87016d9
 git 上游同步方法  如果有冲突就将自己修改的文件在别处保存后删除，再执行如下操作 最后记得对比上游文件。
 https://github.com/selfteaching/the-craft-of-selfteaching/issues/67
 https://gitbook.tw/chapters/github/syncing-a-fork
+
+# 注意 action not in self.legal_actions时的处理 是随机从合法actions中选一个
+https://github.com/valkryhx/LightZero/blob/1d181b8f85810866ef7ef52ffb3c2c836d0dc4a2/zoo/game_2048/envs/game_2048_env.py#L216
+https://github.com/valkryhx/LightZero/blob/1d181b8f85810866ef7ef52ffb3c2c836d0dc4a2/zoo/game_2048/envs/game_2048_env.py#L270
+
