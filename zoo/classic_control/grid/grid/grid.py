@@ -1,5 +1,6 @@
 
-
+import logging
+import copy
 import numpy #as numpy
 #import pygame
 from copy import deepcopy
@@ -141,12 +142,21 @@ class GridEnv(gym.Env):
         
     def step(self, action):
         #print(f'********step_legal_actions={self.legal_actions()} and step_action={action}')
-        if action not in self.legal_actions() or len(self.legal_actions())==0 :
-            #如果模型给出的action在合法动作之外则本轮不移动而且reward为一个较大的惩罚项
-            reward=-10 #因为动作在合法动作之外 所以给一个很大的惩罚项
-            done = (numpy.max(self.mark) <= self.MARK_NEGATIVE) or len(self.legal_actions())==0
-            truncated=False# 占位用 无意义
-            return self.get_observation(), reward, done, truncated,{}#bool(reward)
+        # if action not in self.legal_actions() or len(self.legal_actions())==0 :
+        #     #如果模型给出的action在合法动作之外则本轮不移动而且reward为一个较大的惩罚项
+        #     reward=-10 #因为动作在合法动作之外 所以给一个很大的惩罚项
+        #     done = (numpy.max(self.mark) <= self.MARK_NEGATIVE) or len(self.legal_actions())==0
+        #     truncated=False# 占位用 无意义
+        #     return self.get_observation(), reward, done, truncated,{}#bool(reward)
+        # 下面的处理action不在合法action之内的方式更合理 参考的是2048game
+        # https://github.com/valkryhx/LightZero/blob/1d181b8f85810866ef7ef52ffb3c2c836d0dc4a2/zoo/game_2048/envs/game_2048_env.py#L216
+        # https://github.com/valkryhx/LightZero/blob/1d181b8f85810866ef7ef52ffb3c2c836d0dc4a2/zoo/game_2048/envs/game_2048_env.py#L270
+        if action not in self.legal_actions():
+            logging.warning(
+                f"Illegal action: {action}. Legal actions: {self.legal_actions()}. "
+                "Choosing a random action from legal actions."
+            )
+            action = np.random.choice(self.legal_actions())
         if not self.position:
             self.position =[-1,-1] # position[-1,-1]表示不在grid上的位置只是为了占位
         self.position[0] = action // grid_size
