@@ -63,6 +63,7 @@ class GridEnv(gym.Env):
 
         # setting display size
         #self.screen = pygame.display.set_mode((self.num_cols * self.cell_size, self.num_rows * self.cell_size))
+    @property
     def legal_actions(self):
         legal_actions = self._actions
         if self.position and len(self.position)>1:
@@ -151,12 +152,14 @@ class GridEnv(gym.Env):
         # 下面的处理action不在合法action之内的方式更合理 参考的是2048game
         # https://github.com/valkryhx/LightZero/blob/1d181b8f85810866ef7ef52ffb3c2c836d0dc4a2/zoo/game_2048/envs/game_2048_env.py#L216
         # https://github.com/valkryhx/LightZero/blob/1d181b8f85810866ef7ef52ffb3c2c836d0dc4a2/zoo/game_2048/envs/game_2048_env.py#L270
-        if action not in self.legal_actions():
+        print(if action not in self.legal_actions)
+        if action not in self.legal_actions:
             logging.warning(
-                f"Illegal action: {action}. Legal actions: {self.legal_actions()}. "
+                f"Illegal action: {action}. Legal actions: {self.legal_actions}. "
                 "Choosing a random action from legal actions."
             )
-            action = numpy.random.choice(self.legal_actions())
+            action = numpy.random.choice(self.legal_actions)
+            print(f'********step_legal_actions={self.legal_actions()} and new_step_action={action}')
         if not self.position:
             self.position =[-1,-1] # position[-1,-1]表示不在grid上的位置只是为了占位
         self.position[0] = action // grid_size
