@@ -145,6 +145,8 @@ class MyGridEnv(BaseEnv):
         self._eval_episode_return += rew
         if done:
             info['eval_episode_return'] = self._eval_episode_return
+            # add h_score to show during test step by step
+            info['h_score']= self._env.h_score
 
         #action_mask = np.ones(self.action_space.n, 'int8')
         # 参考 gomoku_env.py的def _player_step定义 实时更新action_mask 
