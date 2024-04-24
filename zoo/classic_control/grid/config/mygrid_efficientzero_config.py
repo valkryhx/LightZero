@@ -17,10 +17,10 @@ num_simulations = 40 #
 
 
 update_per_collect = 50
-batch_size = 20#256#100#16# 256
+batch_size = 200#20#256#100#16# 256
 
 # 使用 efficientzero 那么减少max_env_step 试试
-max_env_step =int(4e4)# int(6e5)# int(1e5) #max_env_step * num_simulations /num_unroll_steps =learner.train_iter=2000
+max_env_step =int(1e5)# int(6e5)# int(1e5) #max_env_step * num_simulations /num_unroll_steps =learner.train_iter=2000
 reanalyze_ratio = 0
 # ==============================================================
 # end of the most frequently changed config specified by the user
@@ -56,7 +56,7 @@ mygrid_efficientzero_config = dict(
             norm_type='BN', 
             frame_stack_num=frame_stack_num,
             
-            num_res_blocks=2,#2,
+            num_res_blocks=4,#2,
             num_channels=64,#32,
             # add 虽然默认是300 但是还是明确写出来好
             # # support_scale 和 categorical_distribution=True 搭配使用 categorical_distribution 默认是True
@@ -70,7 +70,7 @@ mygrid_efficientzero_config = dict(
         ),
         cuda=True,
 
-        num_unroll_steps=3,
+        num_unroll_steps=5,
         td_steps=5,
 
         env_type='not_board_games',
@@ -97,8 +97,8 @@ save_freq_dict={
     'learn': {
         'learner': {
             'hook': {
-                'log_show_after_iter': 2000,
-                'save_ckpt_after_iter': 2000,   # Set this to your desired frequency
+                'log_show_after_iter': 10000,
+                'save_ckpt_after_iter': 10000,   # Set this to your desired frequency
                 'save_ckpt_after_run': False,
             },
         },
