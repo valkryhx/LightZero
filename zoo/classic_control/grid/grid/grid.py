@@ -198,7 +198,7 @@ class GridEnv(gym.Env):
         
         
         #done = (numpy.max(self.grid) <= self.MARK_NEGATIVE) or len(self.legal_actions())==0
-        done = (numpy.max(self.mark) <= self.MARK_NEGATIVE) or len(self.legal_actions())==0
+        done = (numpy.max(self.mark) <= self.MARK_NEGATIVE) or len(self.legal_actions)==0
         #done =  len(self.legal_actions())==0
         #reward =0
         
@@ -216,7 +216,7 @@ class GridEnv(gym.Env):
          """
         # 在legal actions中随机选一个 而不是从所有actions中随机选
         # 参考 gomoku_env.py
-        action_list = self.legal_actions()
+        action_list = self.legal_actions
         return numpy.random.choice(action_list)
         #random_action = self.action_space.sample()
         #random_action = to_ndarray([random_action], dtype=np.int64)
