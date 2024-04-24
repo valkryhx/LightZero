@@ -133,7 +133,7 @@ class MyGridEnv(BaseEnv):
                 f"Illegal action: {action}. Legal actions: {self.legal_actions}. "
                 "Choosing a random action from legal actions."
             )
-            action = numpy.random.choice(self.legal_actions)
+            action = np.random.choice(self.legal_actions)
             #print(f'********step_legal_actions={self.legal_actions} and new_step_action={action}')
          
         if isinstance(action, np.ndarray) and action.shape == (1,):
