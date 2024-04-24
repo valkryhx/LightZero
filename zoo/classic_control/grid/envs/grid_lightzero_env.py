@@ -65,12 +65,14 @@ class MyGridEnv(BaseEnv):
         self._action_space = gym.spaces.Discrete(grid_size*grid_size)
         self._action_space.seed(0)  # default seed
         self._reward_space = gym.spaces.Box(low=-10.0, high=10.0, shape=(1,), dtype=np.float32)
+        self._record_actions=[]
 
     def reset(self) -> Dict[str, np.ndarray]:
         """
         Reset the environment. If it hasn't been initialized yet, this method also handles that. It also handles seeding
         if necessary. Returns the first observation.
         """
+        self._record_actions=[] # 重新记录action
         if not self._init_flag:
             self._env = gym.make('MyGrid-v1',render_mode="rgb_array")
             if self._replay_path is not None:
@@ -106,7 +108,7 @@ class MyGridEnv(BaseEnv):
         action_mask[self.legal_actions] = 1 # 
         #print(f'self.legal_actions={self.legal_actions}')
         obs = {'observation': obs, 'action_mask': action_mask, 'to_play': -1}
-
+        
         return obs
 
     def step(self, action: Union[int, np.ndarray]) -> BaseEnvTimestep:
@@ -141,12 +143,13 @@ class MyGridEnv(BaseEnv):
 
         obs, rew, terminated, truncated, info = self._env.step(action)
         done = terminated or truncated
-
         self._eval_episode_return += rew
+        self._record_actions.append(action)
         if done:
             info['eval_episode_return'] = self._eval_episode_return
             # add h_score to show during test step by step
-            info['h_score']= self._env.h_score
+            info['h_score']= self._env.unwrapped.h_score
+            info['actions_record']= self._record_actions.append
 
         #action_mask = np.ones(self.action_space.n, 'int8')
         # 参考 gomoku_env.py的def _player_step定义 实时更新action_mask 
