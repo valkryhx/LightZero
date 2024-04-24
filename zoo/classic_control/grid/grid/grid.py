@@ -152,7 +152,7 @@ class GridEnv(gym.Env):
         # 下面的处理action不在合法action之内的方式更合理 参考的是2048game
         # https://github.com/valkryhx/LightZero/blob/1d181b8f85810866ef7ef52ffb3c2c836d0dc4a2/zoo/game_2048/envs/game_2048_env.py#L216
         # https://github.com/valkryhx/LightZero/blob/1d181b8f85810866ef7ef52ffb3c2c836d0dc4a2/zoo/game_2048/envs/game_2048_env.py#L270
-        print(if action not in self.legal_actions)
+        print(action not in self.legal_actions)
         if action not in self.legal_actions:
             logging.warning(
                 f"Illegal action: {action}. Legal actions: {self.legal_actions}. "
