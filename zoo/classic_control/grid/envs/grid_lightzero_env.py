@@ -193,7 +193,7 @@ class MyGridEnv(BaseEnv):
         #to get this variable you can do `env.unwrapped.legal_actions` for environment variables or 
         #`env.get_attr('legal_actions')` that will search the reminding wrappers."""
 
-        return self._env.unwrapped.legal_actions()
+        return self._env.unwrapped.legal_actions
 
     @property
     def observation_space(self) -> gym.spaces.Space:
