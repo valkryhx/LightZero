@@ -128,6 +128,14 @@ class MyGridEnv(BaseEnv):
             - An action mask is created with ones, which represents the availability of each action in the action space.
             - Observations are returned in a dictionary format containing 'observation', 'action_mask', and 'to_play'.
         """
+        if action not in self.legal_actions:
+            logging.warning(
+                f"Illegal action: {action}. Legal actions: {self.legal_actions}. "
+                "Choosing a random action from legal actions."
+            )
+            action = numpy.random.choice(self.legal_actions)
+            #print(f'********step_legal_actions={self.legal_actions} and new_step_action={action}')
+         
         if isinstance(action, np.ndarray) and action.shape == (1,):
             action = action.squeeze()  # 0-dim array
 
