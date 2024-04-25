@@ -20,14 +20,14 @@ update_per_collect = 50
 batch_size = 20#20#256#100#16# 256
 
 # 使用 efficientzero 那么减少max_env_step 试试
-max_env_step =int(6e4)# int(6e5)# int(1e5) #max_env_step * num_simulations /num_unroll_steps =learner.train_iter=2000
-reanalyze_ratio = 0.2
+max_env_step =int(1e4)# int(6e5)# int(1e5) #max_env_step * num_simulations /num_unroll_steps =learner.train_iter=2000
+reanalyze_ratio = 0
 # ==============================================================
 # end of the most frequently changed config specified by the user
 # 所有配置和mazegame_muzero_config_for_test.py 保持一致
 # ==============================================================
 grid_size = 10
-frame_stack_num=3#1#3
+frame_stack_num=1#3
 mygrid_efficientzero_config = dict(
     exp_name=f'data_mz_ctree/mygrid_efficientzero_ns{num_simulations}_upc{update_per_collect}_rr{reanalyze_ratio}_seed0',
     env=dict(
@@ -56,7 +56,7 @@ mygrid_efficientzero_config = dict(
             norm_type='BN', 
             frame_stack_num=frame_stack_num,
             
-            num_res_blocks=8,#4,#2,
+            num_res_blocks=2,#4,#2,
             num_channels=64,#32,
             # add 虽然默认是300 但是还是明确写出来好
             # # support_scale 和 categorical_distribution=True 搭配使用 categorical_distribution 默认是True
