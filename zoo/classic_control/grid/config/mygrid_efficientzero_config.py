@@ -97,8 +97,8 @@ save_freq_dict={
     'learn': {
         'learner': {
             'hook': {
-                'log_show_after_iter': 10000,
-                'save_ckpt_after_iter': 10000,   # Set this to your desired frequency
+                'log_show_after_iter': 500,
+                'save_ckpt_after_iter': 500,   # Set this to your desired frequency
                 'save_ckpt_after_run': False,
             },
         },
