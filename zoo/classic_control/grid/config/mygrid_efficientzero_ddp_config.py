@@ -27,7 +27,7 @@ reanalyze_ratio = 0
 # 所有配置和mazegame_muzero_config_for_test.py 保持一致
 # ==============================================================
 grid_size = 10
-
+frame_stack_num=3#1#3
 mygrid_efficientzero_config = dict(
     exp_name=f'data_mz_ctree/mygrid_efficientzero_ns{num_simulations}_upc{update_per_collect}_rr{reanalyze_ratio}_ddp_{gpu_num}gpu_seed0',
     env=dict(
@@ -53,9 +53,9 @@ mygrid_efficientzero_config = dict(
             #latent_state_dim=128,
             self_supervised_learning_loss=True,  # NOTE: default is False.
             discrete_action_encoding_type='one_hot',
-            #norm_type='BN', 
-            
-            num_res_blocks=2,#2,
+            norm_type='BN', 
+            frame_stack_num=frame_stack_num,
+            num_res_blocks=8,#2,
             num_channels=64,#32,
             # add 虽然默认是300 但是还是明确写出来好
             # # support_scale 和 categorical_distribution=True 搭配使用 categorical_distribution 默认是True
@@ -96,9 +96,9 @@ save_freq_dict={
     'learn': {
         'learner': {
             'hook': {
-                'log_show_after_iter': 4000,
-                'save_ckpt_after_iter': 4000,   # Set this to your desired frequency
-                'save_ckpt_after_run': True,
+                'log_show_after_iter': 2000,
+                'save_ckpt_after_iter': 2000,   # Set this to your desired frequency
+                'save_ckpt_after_run': False,#True,
             },
         },
     },
