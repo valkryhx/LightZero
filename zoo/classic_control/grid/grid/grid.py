@@ -209,12 +209,15 @@ class GridEnv(gym.Env):
         #done =  len(self.legal_actions())==0
         #reward =0
         
+        # if done :
+        #    if self.agent_get_reward>= self.h_score :
+        #        #reward = self.agent_get_reward - self.h_score
+        #        reward +=   10
+        #    else :
+        #         reward += -10
         if done :
-           if self.agent_get_reward>= self.h_score :
-               #reward = self.agent_get_reward - self.h_score
-               reward +=   10
-           else :
-                reward += -10
+            reward = self.agent_get_reward - self.h_score
+        
             
         truncated=False# 占位用 无意义
         return self.get_observation(), reward, done, truncated,{}#bool(reward)
