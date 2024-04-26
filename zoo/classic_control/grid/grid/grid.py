@@ -24,6 +24,7 @@ class GridEnv(gym.Env):
         self.MARK_NEGATIVE = -1.0        
         self.agent_get_reward =0
         self.h_actions=[] # 按照每次取当前局面的最大值的策略选择动作 进行记录
+       
         # 原始的action space为[0,100)
         
         # 每次step都会更新 _used_actions ，使用_actions - _used_actions - _invalid_actions，剩下的才是合法的action space
@@ -89,7 +90,7 @@ class GridEnv(gym.Env):
             m = numpy.argmax(grid_copy)                # 把矩阵拉成一维，m是在一维数组中最大值的下标
             self.h_actions.append(m) # 记录该动作
             row, col = divmod(m, grid_copy.shape[1])    # r和c分别为商和余数，即最大值在矩阵中的行和列 # m是被除数， a.shape[1]是除数
-            self.h_pos[self.position[0],self.position[1]] = 1 # 记录h_actions的落子位置 提前给agent observation
+            self.h_pos[row, col] = 1 # 记录h_actions的落子位置 提前给agent observation
             #print(f'h_action={m,[row, col]},h_step_reward={numpy.max(grid_copy)}')
             grid_copy[[row,col],:]=self.MARK_NEGATIVE 
             grid_copy[:,[row,col]]=self.MARK_NEGATIVE
