@@ -42,10 +42,11 @@ class GridEnv(gym.Env):
         numpy.fill_diagonal(self.grid, self.MARK_NEGATIVE)
         # marked_position rest
         self.mark = numpy.zeros([grid_size,grid_size])
-        
+
+        self.h_pos=numpy.zeros([grid_size,grid_size]) #记录h_actions的落子位置 提供给observation
         self.h_score = self.heuristic_score()
         #print(f'h_score={self.h_score}')
-        self.h_pos=numpy.zeros([grid_size,grid_size]) #记录h_actions的落子位置 提供给observation
+        
         self._used_actions=set([])
         # invalid actions 比如0 11,22,,,99
         self._invalid_actions = set([i for i in range(grid_size*grid_size) if i//grid_size == i%grid_size])
