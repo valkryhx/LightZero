@@ -211,7 +211,7 @@ class GridEnv(gym.Env):
            if self.agent_get_reward>= self.h_score :
                #reward = self.agent_get_reward - self.h_score
                reward +=   10
-            else :
+           else :
                 reward += -10
             
         truncated=False# 占位用 无意义
