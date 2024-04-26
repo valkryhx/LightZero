@@ -149,6 +149,9 @@ class MyGridEnv(BaseEnv):
             info['eval_episode_return'] = self._eval_episode_return
             # add h_score to show during test step by step
             info['h_score']= self._env.unwrapped.h_score
+            # heuristic actions
+            info['h_actions']= self._env.unwrapped.h_actions
+            # agent actions
             info['actions_record']= self._record_actions
 
         #action_mask = np.ones(self.action_space.n, 'int8')
