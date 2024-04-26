@@ -20,7 +20,7 @@ update_per_collect = 50
 batch_size = 20#20#256#100#16# 256
 
 # 使用 efficientzero 那么减少max_env_step 试试
-max_env_step =int(4e3)# int(6e5)# int(1e5) #max_env_step * num_simulations /num_unroll_steps =learner.train_iter=2000
+max_env_step =int(2e4)# int(6e5)# int(1e5) #max_env_step * num_simulations /num_unroll_steps =learner.train_iter=2000
 reanalyze_ratio = 0
 # ==============================================================
 # end of the most frequently changed config specified by the user
