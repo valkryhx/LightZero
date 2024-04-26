@@ -211,12 +211,12 @@ class GridEnv(gym.Env):
         
         # if done :
         #    if self.agent_get_reward>= self.h_score :
-        #        #reward = self.agent_get_reward - self.h_score
+        #        #reward += self.agent_get_reward - self.h_score
         #        reward +=   10
         #    else :
         #         reward += -10
         if done :
-            reward = self.agent_get_reward - self.h_score
+            reward +=  -self.h_score
         
             
         truncated=False# 占位用 无意义
