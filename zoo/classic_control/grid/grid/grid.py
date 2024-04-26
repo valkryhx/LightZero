@@ -44,6 +44,7 @@ class GridEnv(gym.Env):
         
         self.h_score = self.heuristic_score()
         #print(f'h_score={self.h_score}')
+        self.h_pos=numpy.zeros([grid_size,grid_size]) #记录h_actions的落子位置 提供给observation
         self._used_actions=set([])
         # invalid actions 比如0 11,22,,,99
         self._invalid_actions = set([i for i in range(grid_size*grid_size) if i//grid_size == i%grid_size])
@@ -88,6 +89,7 @@ class GridEnv(gym.Env):
             m = numpy.argmax(grid_copy)                # 把矩阵拉成一维，m是在一维数组中最大值的下标
             self.h_actions.append(m) # 记录该动作
             row, col = divmod(m, grid_copy.shape[1])    # r和c分别为商和余数，即最大值在矩阵中的行和列 # m是被除数， a.shape[1]是除数
+            self.h_pos[self.position[0],self.position[1]] = 1 # 记录h_actions的落子位置 提前给agent observation
             #print(f'h_action={m,[row, col]},h_step_reward={numpy.max(grid_copy)}')
             grid_copy[[row,col],:]=self.MARK_NEGATIVE 
             grid_copy[:,[row,col]]=self.MARK_NEGATIVE
@@ -99,7 +101,7 @@ class GridEnv(gym.Env):
     def get_observation(self):
         #observation = numpy.zeros((self.size, self.size))
         #observation[self.position[0]][self.position[1]] = 1
-        observation = [self.grid ,self.pos_history,self.mark]
+        observation = [self.grid ,self.pos_history,self.mark,self.h_pos]
         #observation = [self.grid]
         #observation = [self.grid ,self.pos_history,self.mark,self.pos_now,self.invalid_1,self.invalid_2,self.invalid_3,self.invalid_4]
         #observation = self.grid.flatten()
@@ -118,6 +120,7 @@ class GridEnv(gym.Env):
         self.grid = numpy.random.rand(grid_size,grid_size)#*10
         numpy.fill_diagonal(self.grid, self.MARK_NEGATIVE)
         self.h_actions=[]
+        self.h_pos=numpy.zeros([grid_size,grid_size])
         # marked_position reset
         
         # pos history 
@@ -173,6 +176,7 @@ class GridEnv(gym.Env):
         #if self.grid[self.position[0],self.position[1]]<=self.MARK_NEGATIVE:
         #    done = (numpy.max(self.mark) <= self.MARK_NEGATIVE) or len(self.legal_actions())==0
         #    return self.get_observation(), 0, done#bool(reward)
+        # mark[pos_1m,pos_2]如果小于0说明此地被占了 那么action选到这个位置就给一个2的惩罚
         pos_penalty = self.mark[self.position[0],self.position[1]] if self.mark[self.position[0],self.position[1]]>=0 else 2.0
         reward = self.grid[self.position[0],self.position[1]]  - pos_penalty #- self.h_score / (grid_size/2)
         self.agent_get_reward += reward
@@ -203,10 +207,12 @@ class GridEnv(gym.Env):
         #done =  len(self.legal_actions())==0
         #reward =0
         
-        #if done :
-        #    if self.agent_get_reward>= self.h_score :
-        #        #reward = self.agent_get_reward - self.h_score
-        #        reward +=   10
+        if done :
+           if self.agent_get_reward>= self.h_score :
+               #reward = self.agent_get_reward - self.h_score
+               reward +=   10
+            else :
+                reward += -10
             
         truncated=False# 占位用 无意义
         return self.get_observation(), reward, done, truncated,{}#bool(reward)
