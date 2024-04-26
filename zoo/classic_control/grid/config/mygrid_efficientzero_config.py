@@ -20,7 +20,7 @@ update_per_collect = 50
 batch_size = 20#20#256#100#16# 256
 
 # 使用 efficientzero 那么减少max_env_step 试试
-max_env_step =int(1e4)# int(6e5)# int(1e5) #max_env_step * num_simulations /num_unroll_steps =learner.train_iter=2000
+max_env_step =int(4e3)# int(6e5)# int(1e5) #max_env_step * num_simulations /num_unroll_steps =learner.train_iter=2000
 reanalyze_ratio = 0
 # ==============================================================
 # end of the most frequently changed config specified by the user
@@ -28,12 +28,13 @@ reanalyze_ratio = 0
 # ==============================================================
 grid_size = 10
 frame_stack_num=1#3
+obs_grid_layer = 4 # raw_board , pos_history, mark, h_pos
 mygrid_efficientzero_config = dict(
     exp_name=f'data_mz_ctree/mygrid_efficientzero_ns{num_simulations}_upc{update_per_collect}_rr{reanalyze_ratio}_seed0',
     env=dict(
         env_id='MyGrid-v1',
         continuous=False,
-        obs_shape=(3, grid_size, grid_size),
+        obs_shape=(obs_grid_layer, grid_size, grid_size),
         channel_last=False,
         manually_discretization=False,
         collector_env_num=collector_env_num,
@@ -44,9 +45,9 @@ mygrid_efficientzero_config = dict(
     policy=dict(
         
         model=dict(
-            observation_shape=(3*frame_stack_num,grid_size,grid_size),#16,#4,
+            observation_shape=(obs_grid_layer*frame_stack_num,grid_size,grid_size),#16,#4,
             channel_last=False,
-            image_channel=3,#1,
+            image_channel=obs_grid_layer,#3,#1,
             action_space_size=grid_size*grid_size,#4,#2,
             #model_type='conv',#'mlp', 
             #lstm_hidden_size=128,
@@ -97,8 +98,8 @@ save_freq_dict={
     'learn': {
         'learner': {
             'hook': {
-                'log_show_after_iter': 2000,
-                'save_ckpt_after_iter': 2000,   # Set this to your desired frequency
+                'log_show_after_iter': 500,
+                'save_ckpt_after_iter': 500,   # Set this to your desired frequency
                 'save_ckpt_after_run': False,
             },
         },
