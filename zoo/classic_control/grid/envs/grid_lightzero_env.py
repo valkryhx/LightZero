@@ -61,7 +61,7 @@ class MyGridEnv(BaseEnv):
         #    dtype=np.float32
         #)
         #self._observation_space=gym.spaces.Box(low=0.0,high=2.0,shape=(4,4,1),dtype=np.float32)
-        self._observation_space=gym.spaces.Box(low=-1.0,high=1.0,shape=(3,grid_size,grid_size),dtype=np.float32)
+        self._observation_space=gym.spaces.Box(low=-1.0,high=1.0,shape=(4,grid_size,grid_size),dtype=np.float32)
         self._action_space = gym.spaces.Discrete(grid_size*grid_size)
         self._action_space.seed(0)  # default seed
         self._reward_space = gym.spaces.Box(low=-10.0, high=10.0, shape=(1,), dtype=np.float32)
