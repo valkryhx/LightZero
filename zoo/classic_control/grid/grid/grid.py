@@ -58,7 +58,7 @@ class GridEnv(gym.Env):
         # Observation space is grid of size:rows x columns
         #self.observation_space = spaces.Tuple((spaces.Discrete(self.num_rows), spaces.Discrete(self.num_cols)))
         #self.observation_space = spaces.Box(low=0.0,high=2.0,shape=(4,4,1),dtype=numpy.float32)
-        self.observation_space = spaces.Box(low=-1.0,high=1.0,shape=(3,grid_size,grid_size),dtype=numpy.float32)
+        self.observation_space = spaces.Box(low=-1.0,high=1.0,shape=(4,grid_size,grid_size),dtype=numpy.float32)
 
         # Initialize Pygame
         #pygame.init()
