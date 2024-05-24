@@ -28,7 +28,7 @@ reanalyze_ratio = 0
 # ==============================================================
 grid_size = 10
 frame_stack_num=1#3
-obs_grid_layer = 4 # raw_board , pos_history, mark, h_pos
+obs_grid_layer = 3 # raw_board , pos_history, mark,# h_pos
 mygrid_efficientzero_config = dict(
     exp_name=f'data_mz_ctree/mygrid_efficientzero_ns{num_simulations}_upc{update_per_collect}_rr{reanalyze_ratio}_seed0',
     env=dict(
@@ -57,7 +57,7 @@ mygrid_efficientzero_config = dict(
             norm_type='BN', 
             frame_stack_num=frame_stack_num,
             
-            num_res_blocks=2,#4,#2,
+            num_res_blocks=4,#4,#2,
             num_channels=64,#32,
             # add 虽然默认是300 但是还是明确写出来好
             # # support_scale 和 categorical_distribution=True 搭配使用 categorical_distribution 默认是True
@@ -81,7 +81,7 @@ mygrid_efficientzero_config = dict(
         batch_size=batch_size,
         optim_type='Adam',
         lr_piecewise_constant_decay=False,
-        learning_rate=0.003,
+        learning_rate=1e-5#0.003,
         #ssl_loss_weight=2,  # NOTE: default is 0.
         grad_clip_value=0.5,
         num_simulations=num_simulations,
@@ -120,8 +120,8 @@ mygrid_efficientzero_create_config = dict(
     ),
     env_manager=dict(type='subprocess'),
     policy=dict(
-        type='efficientzero',#'muzero',
-        import_names=['lzero.policy.efficientzero'],#['lzero.policy.muzero'],
+        type='muzero',#'efficientzero',#'muzero',
+        import_names=['lzero.policy.muzero'],#['lzero.policy.efficientzero'],#['lzero.policy.muzero'],
     ),
 )
 mygrid_efficientzero_create_config = EasyDict(mygrid_efficientzero_create_config)
