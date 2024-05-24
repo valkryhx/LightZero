@@ -103,7 +103,8 @@ class GridEnv(gym.Env):
     def get_observation(self):
         #observation = numpy.zeros((self.size, self.size))
         #observation[self.position[0]][self.position[1]] = 1
-        observation = [self.grid ,self.pos_history,self.mark,self.h_pos]
+        #observation = [self.grid ,self.pos_history,self.mark,self.h_pos]
+        observation = [self.grid ,self.pos_history,self.mark]
         #observation = [self.grid]
         #observation = [self.grid ,self.pos_history,self.mark,self.pos_now,self.invalid_1,self.invalid_2,self.invalid_3,self.invalid_4]
         #observation = self.grid.flatten()
@@ -216,7 +217,7 @@ class GridEnv(gym.Env):
         #    else :
         #         reward += -10
         if done :
-            reward +=  -self.h_score
+            reward += 0  #-self.h_score
         
             
         truncated=False# 占位用 无意义
